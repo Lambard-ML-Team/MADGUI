@@ -34,6 +34,7 @@ from scipy.optimize import minimize
 
 import os
 import io
+from pathlib import Path
 
 # First define the different part that we will display
 
@@ -70,8 +71,8 @@ def fn_save(x):
 with st.sidebar:
 
 	# Navigation part
-	choice = option_menu('Navigation', ['Main Page','Prediction','Bayesian'],
-		icons = ['house', 'tree','app-indicator'],
+	choice = option_menu('Navigation', ['Main Page','Prediction','Bayesian','About'],
+		icons = ['house', 'tree','app-indicator','info-circle'],
 		menu_icon = 'map', default_index=0,
 		styles={
         "container": {"padding": "5!important", "background-color": "#fafafa"},
@@ -268,7 +269,8 @@ elif choice == 'Prediction':
 		            vmax = 1, 
 		            annot = True, 
 		            ax = ax, 
-		            mask = data_corr_mask);
+		            cmap = "coolwarm",
+			    mask = data_corr_mask);
 		st.pyplot(fig)
 		fn = 'pearson_corr.png'
 		img = io.BytesIO()
@@ -712,7 +714,7 @@ elif choice == 'Bayesian':
 		st.dataframe(space)
 		
 		#Number of possibilities:
-		#st.dataframe(np.prod([len(space[irow]['domain']) for irow in range(len(space))]))
+		st.write("The number of possibilities are :", "{:.2e}".format(np.prod([len(space[irow]['domain']) for irow in range(len(space))])))
 
 		# Explaination about consraints
 
@@ -1090,3 +1092,9 @@ elif choice == 'Bayesian':
 				file_name = 'proposed_list_with_predi.csv',
 				mime = 'text/csv')
 
+if choice == 'About':
+	def read_markdown_file(markdown_file):
+	    return Path(markdown_file).read_text()
+
+	intro_markdown = read_markdown_file("README.md")
+	st.markdown(intro_markdown, unsafe_allow_html=True)
