@@ -5,6 +5,5 @@ Can be used directly without any installation with the link below:
 (add link when app deployed)
 
 Developers:
-Christophe BAJAN // Guillaume LAMBARD
 
-![image](https://user-images.githubusercontent.com/108456770/215393588-e7c231ab-adf5-43b5-a23a-6ea50064655a.png)![image](https://user-images.githubusercontent.com/108456770/215393518-ac106506-0821-4267-8b2e-d6dc242c1d50.png)
+![image](https://user-images.githubusercontent.com/108456770/215393952-520706b3-cc6b-4991-80fa-d31f39646b17.png)
