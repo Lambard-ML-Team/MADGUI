@@ -7,5 +7,4 @@ Can be used directly without any installation with the link below:
 Developers:
 Christophe BAJAN // Guillaume LAMBARD
 
-![image](https://user-images.githubusercontent.com/108456770/215393588-e7c231ab-adf5-43b5-a23a-6ea50064655a.png) ![image](https://user-images.githubusercontent.com/108456770/215393518-ac106506-0821-4267-8b2e-d6dc242c1d50.png)
-
+![image](https://user-images.githubusercontent.com/108456770/215393588-e7c231ab-adf5-43b5-a23a-6ea50064655a.png)![image](https://user-images.githubusercontent.com/108456770/215393518-ac106506-0821-4267-8b2e-d6dc242c1d50.png)
