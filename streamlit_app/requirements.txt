@@ -1,0 +1,15 @@
+bokeh==2.4.3
+glob2==0.7
+GPy==1.10.0
+GPyOpt==1.2.6
+matplotlib==3.6.3
+matplotlib-inline==0.1.6
+numpy==1.19
+openpyxl==3.0.10
+pandas==1.4.2
+scikit-learn==1.2.1
+seaborn==0.12.2
+streamlit==1.17.0
+streamlit-aggrid==0.3.3
+streamlit-option-menu==0.3.2
+xgboost==1.5.0
