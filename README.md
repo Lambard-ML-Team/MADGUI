@@ -18,8 +18,12 @@ We utilize four methods: ElasticNet, RandomForestRegressor, XGBRegressor or Hist
 ![image](https://user-images.githubusercontent.com/108456770/215394425-03f5c70b-39cc-41a7-a8d4-4f9b0e6daf14.png)
 
 An important part of the optimization is the limit for the features and the constraints, the application take both of it in consideration for the optimization.
+
 ![image](https://user-images.githubusercontent.com/108456770/215394498-d42ecad5-b5e2-4363-902d-f85e33951773.png)
 
-The last part allow users to use prediction model and Bayesian Optimization at the same time to unbias the data for the initialisation of the Bayesian Optimization
+The last part allow users to use prediction model and Bayesian Optimization at the same time to unbias the data for the initialisation of the Bayesian Optimization.
+
+Here is an explanation of the Bayesian Optimization (source: http://krasserm.github.io/2018/03/21/bayesian-optimization/)
+
 ![image](https://user-images.githubusercontent.com/108456770/215394614-fa624138-568c-4951-b6e7-a4e9c3e005e0.png)
 
