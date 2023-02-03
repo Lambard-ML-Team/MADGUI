@@ -10,7 +10,7 @@ Developers:
 
 The application allow users to analyse their datas (with Pearson's correlation for example)
 
-![image](https://user-images.githubusercontent.com/108456770/215394372-e75f476c-6d9e-4803-9e5a-8ddaaff11b86.png)
+![image](https://user-images.githubusercontent.com/108456770/215407614-e26e4250-7864-495b-b0d4-e43f7efb4fb1.png)
 
 In another section, the user has the ability to select the target, the prediction model, cross-validation and k-fold method for the prediction process.
 We utilize four methods: ElasticNet, RandomForestRegressor, XGBRegressor or HistGradientBoostingRegressor, and two cross-validation methods: LeaveOneOut or K-fold.
