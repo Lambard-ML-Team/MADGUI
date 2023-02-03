@@ -182,6 +182,7 @@ if choice == 'Main Page':
 			data_file_target = data_file[[target[i] for i in range(len(target))]]
 			st.session_state['data_file_target'] = data_file_target
 			st.session_state["Check1"] = True
+			st.session_state["constraints"]={}
 
 		if "Check1" in st.session_state:
 			st.write('The data that you selected (Features + Targets) are : ')
@@ -207,16 +208,19 @@ if choice == 'Main Page':
 				Z = pd.concat([Z, st.session_state['data_file_target'].iloc[:,i]],axis=1)
 
 			# Graph with the correlation between each features and target 
-			corr_fig = sns.pairplot(st.session_state['data_file_selected'].iloc[:,:],corner=True)
-			st.pyplot(corr_fig)
-			fn_2 = 'correlation.png'
-			img = io.BytesIO()
-			plt.savefig(img, format='png')
-			btn = st.download_button(
-				label='Download graph',
-				data=img,
-				file_name=fn_2,
-				mime='image/png')
+			st.write("By clicking on the button below, you will display the correlation graph between all the features/target that you selected. It can take some times to charge it.")
+			correlation = st.button("Display the correlation graph")
+			if correlation:
+				corr_fig = sns.pairplot(st.session_state['data_file_selected'].iloc[:,:],corner=True)
+				st.pyplot(corr_fig)
+				fn_2 = 'correlation.png'
+				img = io.BytesIO()
+				plt.savefig(img, format='png')
+				btn = st.download_button(
+					label='Download graph',
+					data=img,
+					file_name=fn_2,
+					mime='image/png')
 			st.success('You can now navigate to the other pages of the program. It is important to note that if you make any changes to your selection on this page, you must submit it again to ensure that the changes are saved and applied to the analysis.')
 			
 			# To initialize this variable without it being reset everytime in the next page
@@ -712,6 +716,7 @@ elif choice == 'Bayesian':
 				space.extend(row)
 		
 		st.dataframe(space)
+		
 		
 		#Number of possibilities:
 		st.write("The number of possibilities are :", "{:.2e}".format(np.prod([len(space[irow]['domain']) for irow in range(len(space))])))
