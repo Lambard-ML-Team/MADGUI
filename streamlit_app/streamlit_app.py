@@ -28,13 +28,24 @@ import GPyOpt as gpopt
 
 import matplotlib.pyplot as plt
 import matplotlib as mpl
+from matplotlib import rcParams
+from matplotlib import font_manager as fm
 
-import seaborn as sns
-from scipy.optimize import minimize
 
 import os
 import io
 from pathlib import Path
+
+import seaborn as sns
+from scipy.optimize import minimize
+
+# Font for Japanese character in matplotlib and seaborn
+fpath = os.path.join(os.getcwd(), "streamlit_app/Noto_Sans_JP/NotoSansJP-Regular.otf")
+prop = fm.FontProperties(fname=fpath)
+font_dir = ['streamlit_app/Noto_Sans_JP']
+for font in fm.findSystemFonts(font_dir):
+    fm.fontManager.addfont(font)
+rcParams['font.family'] = 'Noto Sans JP'
 
 # First define the different part that we will display
 
@@ -49,15 +60,10 @@ bayesian = st.container()
 # Tool for activate the cursor on the bokeh graph to display the value
 TOOLTIPS = [("index", "$index"),("(x,y)", "(@x, @y)"),]
 
-# plt.rcParams['font.family']  = "Hiragino Sans" #Font for japanese character
-
 # Function to covert data to csv
 @st.cache
 def convert_feat_lim(df):
 	return df.to_csv().encode('utf-8')
-
-def fn_save(x):
-	st.session_state["%s"%x] = x
 
 	############
 	### In this program we have different pages. To be able to call variable through different page
@@ -99,7 +105,7 @@ if choice == 'Main Page':
 
 	with header: # This section is the part about loading the data with a button on the sidebar
 
-		st.title('Data Analyzis using prediction and Bayesian Optimization')
+		st.title('MADGUI - Data Analyzis using prediction and Bayesian Optimization')
 		st.write('Welcome! The objective of this project is to help you to analyze your data, to find the best \n'
 			'next sample to reach your objective using Bayesian Optimization.\n'
 			'You will be asked to complete different parts of this program. You must start by completing the Main Page where you are currently located. Then you will be able to do either the prediction or the Bayesian optimization. \n'
@@ -128,11 +134,10 @@ if choice == 'Main Page':
 
 		if not uploaded_file:
 			st.stop()
-
+			
 		if uploaded_file.name[-4:] == '.csv':
 			data_file = pd.read_csv(uploaded_file)
 		elif uploaded_file.name[-5:] == '.xlsx':
-# 			data_excel_file = pd.read_excel(uploaded_file)
 			data_file = pd.read_excel(uploaded_file, sheet_name = 0)
 
 		st.session_state['data_file'] = data_file
@@ -141,8 +146,8 @@ if choice == 'Main Page':
 		st.dataframe(data_file)
 			
 	with feature_selection: 
-			# This part is very important, it is the part where the user select which
-			# columns of his data are feature and which are target.
+		# This part is very important, it is the part where the user select which
+		# columns of his data are feature and which are target.
 
 		st.header('2 - Selection of your features and targets for the project')
 		st.write('On this section of the program, you must select which columns of your dataset are the features you want to analyze and which columns are the targets that you want to predict or improve.')
@@ -210,6 +215,7 @@ if choice == 'Main Page':
 			# Graph with the correlation between each features and target 
 			st.write("By clicking on the button below, you will display the correlation graph between all the features/target that you selected. It can take some times to charge it.")
 			correlation = st.button("Display the correlation graph")
+			
 			if correlation:
 				corr_fig = sns.pairplot(st.session_state['data_file_selected'].iloc[:,:],corner=True)
 				st.pyplot(corr_fig)
@@ -1103,3 +1109,4 @@ if choice == 'About':
 
 	intro_markdown = read_markdown_file("README.md")
 	st.markdown(intro_markdown, unsafe_allow_html=True)
+# 	st.markdown(/app/streamlit_app/README.md.read_text(),unsafe_allow_html=True)
