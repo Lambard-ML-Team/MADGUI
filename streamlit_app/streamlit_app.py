@@ -981,12 +981,11 @@ elif choice == 'Bayesian':
 		st.write("In this part, the bayesian optimization will initialise not with your dataset but using values from the prediction model obtained in the other page. The purpose of this operation is to unbiase the dataset. It is recommanded to use this part only if you obtained a good prediction model in the second page, otherwise do not use this part.")
 		st.write("Now let's try to use the prediction you did in the previous page with the bayesian optimization.\n\n"
 			"Choose the parameters that have showm better performance in the Prediction Page.")
+		st.write("It works only if you want to optimize one target") 
 
-		
-		methods = ['ElasticNet', 'RandomForestRegressor', 'XGBRegressor'] #,'HistGradientBoostingRegressor']
+		methods = ['ElasticNet', 'RandomForestRegressor', 'XGBRegressor']
 
 		X_init_2 = X_init
-
 		Y_init_2 = Y_init
 
 		with st.form('Prediction'):
@@ -1007,8 +1006,6 @@ elif choice == 'Bayesian':
 			regressor = RandomForestRegressor(n_estimators = 100, random_state = 0)
 		elif method == 'XGBRegressor':
 			regressor = XGBRegressor(n_estimators = 100, seed = 0)
-# 		elif method == 'HistGradientBoostingRegressor':
-# 			regressor = HistGradientBoostingRegressor()	
 
 		if crossval=='LeaveOneOut':
 			crossvalidation = LeaveOneOut()
