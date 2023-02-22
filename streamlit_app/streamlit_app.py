@@ -15,8 +15,7 @@ from re import search
 import sklearn as skl
 from sklearn.model_selection import cross_val_score, LeaveOneOut, cross_val_predict, cross_validate, KFold
 from sklearn.linear_model import ElasticNet
-from sklearn.ensemble import RandomForestRegressor#,HistGradientBoostingRegressor 
-#from sklearn.inspection import permutation_importance
+from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_squared_error, mean_absolute_error, make_scorer
 
 from sklearn.preprocessing import StandardScaler
@@ -40,6 +39,7 @@ import seaborn as sns
 from scipy.optimize import minimize
 
 # Font for Japanese character in matplotlib and seaborn
+
 fpath = os.path.join(os.getcwd(), "streamlit_app/Noto_Sans_JP/NotoSansJP-Regular.otf")
 prop = fm.FontProperties(fname=fpath)
 font_dir = ['streamlit_app/Noto_Sans_JP']
@@ -76,7 +76,7 @@ def convert_feat_lim(df):
 
 with st.sidebar:
 
-	# Navigation part
+	# Navigation part in the sidebar
 	choice = option_menu('Navigation', ['Main Page','Prediction','Bayesian','About'],
 		icons = ['house', 'tree','app-indicator','info-circle'],
 		menu_icon = 'map', default_index=0,
@@ -103,7 +103,8 @@ if choice == 'Main Page':
 	### and check if everything is correct before continuing
 	############
 
-	with header: # This section is the part about loading the data with a button on the sidebar
+	with header: 
+		# This section is to explain briefly what the point of the app
 
 		st.title('MADGUI - Data Analyzis using prediction and Bayesian Optimization')
 		st.write('Welcome! The objective of this project is to help you to analyze your data, to find the best \n'
@@ -115,7 +116,8 @@ if choice == 'Main Page':
 		st.info("Read carefully before uploading your data ")
 
 
-		# Explanation of the rules for uploading the data
+		# Explanation of the rules for uploading the data with example
+		
 		with st.expander('⚠ Read before continuing ⚠'):
 			st.write('Before uploading, you have to make sure that your data (csv/xlsx) look like this :')
 			st.image('/app/streamlit_app/streamlit_app/Data/exemple_data.png')
@@ -123,14 +125,15 @@ if choice == 'Main Page':
 			st.write("Features are the parameters that you can change during your experiment. Targets are the results of those experiment and are your objective.")
 			st.write("For instance, Feature_1 and Feature_4 are numerical values, while Feature_2 and Feature_3 are categorical values (respectively 2 and 3 choices). Feature_2 can be 'with' or 'without' something  where 'with' is represented by the numerical value of 1 and 'without' is represented by the numerical value of 2.\n"
 				'It is important that there are no blank cells in your data and that all values used are in numerical format.')
-		
 			st.write('After uploading you should see something like this :')
 			exemple = pd.read_csv('/app/streamlit_app/streamlit_app/Data/Exemple_data.csv',sep = ',')
 			st.dataframe(exemple)
 			st.subheader('Upload your dataset on the sidebar')
+			
 		st.write('Firstly, you will have to upload your data. To do that you have to click on the "Browse File" button in the sidebar.')
-	with dataset: # This part is to read the data with pandas as a DataFrame and display an 
-				  # exemple of the data selected to show if it worked correctly
+	
+	with dataset: 
+		# This part is to read the data with pandas as a DataFrame and display the selected data to show if it worked correctly
 
 		if not uploaded_file:
 			st.stop()
@@ -179,7 +182,7 @@ if choice == 'Main Page':
 			submit_button = st.form_submit_button(label='Submit')
 						
 		if submit_button:
-
+			# Save the selection into safe variable to be able to use them in the other pages
 			data_file_feature = data_file[[feature[i] for i in range(len(feature))]]
 			st.session_state['data_file_feature'] = data_file_feature
 			st.session_state['feature_selected'] = feature
@@ -195,7 +198,7 @@ if choice == 'Main Page':
 			st.session_state['data_file_selected'] = data_file_selected
 			st.dataframe(data_file_selected)
 
-				# Quick analyze of the data selected using pd.describe
+			# Quick analyze of the data selected using pd.describe
 			st.header('3 - Quick analysis')
 			st.write('Here you can see some information about your data :')
 			data_describe = st.session_state['data_file_selected'].describe(include = 'all')
@@ -860,7 +863,7 @@ elif choice == 'Bayesian':
 		min_max = np.array(['minimize','maximize'])
 		target = np.array([target_selected]).reshape(-1,1)
 	
-		if 'Target_%s'%i not in st.session_state:
+		if "Check target" not in st.session_state:
 			for i in range(int(num_target)):
 				target[i] = st.selectbox('Select which target you want to optimize, be careful to not choose the same target twice', target_selected,key=(i+1))
 				st.session_state['Target_%s'%i]=np.where(target==target[i])[0][0]
@@ -928,7 +931,7 @@ elif choice == 'Bayesian':
 		X_init = data_file_feature.loc[:,:].values
 
 		if execute:
-
+			st.session_state["Check target"] = True
 			pending_X = np.empty(shape = (0, len(st.session_state['feature_lim'].iloc[:,0])))
 			Next_point = np.empty(shape = (0, 1))
 			predict_values = np.empty(shape = (0, 1))
@@ -952,16 +955,14 @@ elif choice == 'Bayesian':
 				predict_values = np.vstack((predict_values,post_mean))
 				std_values = np.vstack((std_values,std))
 
-# 			prediction = pd.DataFrame(np.hstack((predict_values,std_values)),columns= ['Predicted value','Standard Deviation'])
 			proposed_list_next_opti = pd.DataFrame(pending_X, columns = data_file_feature.columns)
 			st.write('The result of the bayesian optimization are :')
-# 			proposed_list = pd.concat([proposed_list_next_opti,prediction],axis=1)
 			st.session_state['proposed_list']= proposed_list_next_opti
 
-		if 'proposed_list' in st.session_state: # Display the next sample find with the Bayesian Optimization
-
+		if 'proposed_list' in st.session_state: 
+			# Display the next sample find with the Bayesian Optimization
+			
 			st.dataframe(st.session_state['proposed_list'])
-
 			proposed_list_csv = convert_feat_lim(st.session_state['proposed_list'])
 
 			# Downloading the result of the Bayesian Optimization
