@@ -15,8 +15,8 @@ from re import search
 import sklearn as skl
 from sklearn.model_selection import cross_val_score, LeaveOneOut, cross_val_predict, cross_validate, KFold
 from sklearn.linear_model import ElasticNet
-from sklearn.ensemble import RandomForestRegressor,HistGradientBoostingRegressor
-from sklearn.inspection import permutation_importance
+from sklearn.ensemble import RandomForestRegressor#,HistGradientBoostingRegressor 
+#from sklearn.inspection import permutation_importance
 from sklearn.metrics import mean_squared_error, mean_absolute_error, make_scorer
 
 from sklearn.preprocessing import StandardScaler
@@ -240,7 +240,7 @@ elif choice == 'Prediction':
 
 	############
 	### On this page the user can see the Pearson correlation between his variable and also the user  
-	### can use ElasticNet, RandomForest, XGBRegressor and HistGradientBoostingRegressor to predict the value of a specific target
+	### can use ElasticNet, RandomForest, XGBRegressor to predict the value of a specific target
 	############
 
 	# Part to tell the user to complete the Main Page before coming here.
@@ -293,10 +293,10 @@ elif choice == 'Prediction':
 
 	with prediction:
 
-		st.header("Target's Prediction using different methods (ElasticNet, RandomForest, XGBRegressor and HistGradientBoostingRegressor)")
+		st.header("Target's Prediction using different methods (ElasticNet, RandomForest and XGBRegressor)")
 
 		with st.expander('Explanation'):
-			st.write('Here you will have to choose between different methods of prediction: ElasticNet, RandomForest, XGBRegressor or HistGradientBoostingRegressor.'
+			st.write('Here you will have to choose between different methods of prediction: ElasticNet, RandomForest or XGBRegressor.'
 				'\n\n You will also have to choose the cross validation that you want to use. '
 				"Cross-validation is a method used in machine learning to assess the performance of a model. \n\n K-fold cross-validation and Leave-One-Out cross-validation are two different methods of cross-validation. The main difference between the two is how the data is divided into subsets for training and validation. K-fold cross-validation divides the data into K equally sized folds and repeat the process k times, while Leave-One-Out cross-validation uses all but one data point as the training set and repeat the process N times where N is the number of data points in the dataset.")
 
@@ -307,8 +307,8 @@ elif choice == 'Prediction':
 
 			regressors = {'ElasticNet': ElasticNet(random_state=0),
               'RandomForestRegressor': RandomForestRegressor(n_estimators=n_estimators, random_state=0),
-              'XGBRegressor': XGBRegressor(n_estimators=n_estimators, seed=0),
-              'HistGradientBoostingRegressor': HistGradientBoostingRegressor()}
+              'XGBRegressor': XGBRegressor(n_estimators=n_estimators, seed=0)}
+#               'HistGradientBoostingRegressor': HistGradientBoostingRegressor()}
 			    
 			def cross_val_est_fn(clf, x, y, cv):
 				predictions = cross_val_predict(estimator = clf, 
@@ -364,21 +364,21 @@ elif choice == 'Prediction':
 					                                           columns=['importance'+str(idx)])
 					    else: 
 					        feature_importances['importance'+str(idx)] = estimator[1].coef_
-					elif method == 'HistGradientBoostingRegressor':
-						if idx ==0:
-							result = permutation_importance(estimator[1].fit(data.iloc[:,0:lim_feature], data.iloc[:,feature_columns]), data.iloc[:,0:lim_feature], data.iloc[:,feature_columns],n_repeats=10,random_state=0)
-							feature_importances = pd.DataFrame(result["importances_mean"],
-		                       index = col_name,
-		                       columns = ['importance'+str(idx)])
-							feature_importances_mean = feature_importances.mean(axis = 1).sort_values(ascending = False)
-							feature_importances_std = pd.DataFrame(result["importances_std"],
-		                       index = col_name,
-		                       columns = ['importance'+str(idx)])
-							feature_importances_sd = feature_importances_std.mean(axis = 1).sort_values(ascending = False)
-							return feature_importances_mean,feature_importances_sd
+# 					elif method == 'HistGradientBoostingRegressor':
+# 						if idx ==0:
+# 							result = permutation_importance(estimator[1].fit(data.iloc[:,0:lim_feature], data.iloc[:,feature_columns]), data.iloc[:,0:lim_feature], data.iloc[:,feature_columns],n_repeats=10,random_state=0)
+# 							feature_importances = pd.DataFrame(result["importances_mean"],
+# 		                       index = col_name,
+# 		                       columns = ['importance'+str(idx)])
+# 							feature_importances_mean = feature_importances.mean(axis = 1).sort_values(ascending = False)
+# 							feature_importances_std = pd.DataFrame(result["importances_std"],
+# 		                       index = col_name,
+# 		                       columns = ['importance'+str(idx)])
+# 							feature_importances_sd = feature_importances_std.mean(axis = 1).sort_values(ascending = False)
+# 							return feature_importances_mean,feature_importances_sd
 
-						else:
-							feature_importances['importance'+str(idx)] = pd.DataFrame(result["importances_mean"])
+# 						else:
+# 							feature_importances['importance'+str(idx)] = pd.DataFrame(result["importances_mean"])
 					else:
 						if idx == 0:
 							feature_importances = pd.DataFrame(estimator[1].feature_importances_,
@@ -415,9 +415,9 @@ elif choice == 'Prediction':
 
 			return pred_, fig, fig2, test_mae_, test_rmse_, est_
 
-		methods = ['ElasticNet', 'RandomForestRegressor', 'XGBRegressor', 'HistGradientBoostingRegressor']
+		methods = ['ElasticNet', 'RandomForestRegressor', 'XGBRegressor'] #, 'HistGradientBoostingRegressor']
 		crossval_list = ['LeaveOneOut','K-Fold']
-		# if 'target_predi' not in st.session_state:
+		
 		with st.form('Prediction'):
 
 			target = st.selectbox('Select which target you want to predict',st.session_state['target_selected'])
@@ -492,7 +492,7 @@ elif choice == 'Prediction':
 			fig_diff.line(sample[0],np.zeros(len(sample[0])),line_color="orange", line_dash="4 4")
 			st.bokeh_chart(fig_diff)
 
-			#Graphic about the difference between the gap Obs-Pred and the Observation point
+			# Graphic about the difference between the gap Obs-Pred and the Observation point
 
 			fig_diff2 = figure(
 		    	title='Difference between observation-prediction and Observation',
@@ -520,6 +520,7 @@ elif choice == 'Prediction':
 				mime='image/png')
 	
 			# Part about the possibility to reselect your feature with the help of the graph about the feature importance
+			
 			with st.form(key='second_selection'):
 				st.write("Here you can choose to change your feature's selection depending on the result of the features importance graph.")
 				feature_2nd_selec = st.multiselect("Features - Unselected the one you don't need then click the submit button :", st.session_state['data_file'].columns, default = st.session_state['feature_selected'])
@@ -549,8 +550,8 @@ elif choice == 'Prediction':
 		        regressor = RandomForestRegressor(n_estimators = n_estimators, random_state = 0)
 		    elif method == 'XGBRegressor':
 		        regressor = XGBRegressor(n_estimators = n_estimators, seed = 0)
-		    elif method == 'HistGradientBoostingRegressor':
-		        regressor = HistGradientBoostingRegressor()		        
+# 		    elif method == 'HistGradientBoostingRegressor':
+# 		        regressor = HistGradientBoostingRegressor()		        
 		        
 		    def cross_val_est_fn(clf, x, y, cv):
 		        predictions = cross_val_predict(estimator = clf, 
@@ -575,7 +576,7 @@ elif choice == 'Prediction':
 		                                                          cv = crossvalidation)
 		    return pred_
 		best_pred = st.button('Find the best parameters')
-		methods = ['ElasticNet', 'RandomForestRegressor', 'XGBRegressor','HistGradientBoostingRegressor']
+		methods = ['ElasticNet', 'RandomForestRegressor', 'XGBRegressor'] #,'HistGradientBoostingRegressor']
 		crossvalidation = ['LeaveOneOut','K-Fold']
 		if best_pred:
 			analyze_pred=[]
@@ -607,8 +608,6 @@ elif choice == 'Prediction':
 		if 'analyze_pred' in st.session_state:		
 			a = np.argmin(st.session_state['analyze_pred'][:,3].astype(np.float))
 			st.write(st.session_state['analyze_pred'][a,:-1])
-
-
 			pred_, fig, fig2, test_mae_, test_rmse_,est_ = analyze_function(method = st.session_state['analyze_pred'][a,:][0], 
 											data = st.session_state['data_selected'], 
 											target = target, 
@@ -983,7 +982,7 @@ elif choice == 'Bayesian':
 			"Choose the parameters that have showm better performance in the Prediction Page.")
 
 		
-		methods = ['ElasticNet', 'RandomForestRegressor', 'XGBRegressor','HistGradientBoostingRegressor']
+		methods = ['ElasticNet', 'RandomForestRegressor', 'XGBRegressor'] #,'HistGradientBoostingRegressor']
 
 		X_init_2 = X_init
 
@@ -1007,8 +1006,8 @@ elif choice == 'Bayesian':
 			regressor = RandomForestRegressor(n_estimators = 100, random_state = 0)
 		elif method == 'XGBRegressor':
 			regressor = XGBRegressor(n_estimators = 100, seed = 0)
-		elif method == 'HistGradientBoostingRegressor':
-			regressor = HistGradientBoostingRegressor()	
+# 		elif method == 'HistGradientBoostingRegressor':
+# 			regressor = HistGradientBoostingRegressor()	
 
 		if crossval=='LeaveOneOut':
 			crossvalidation = LeaveOneOut()
@@ -1109,4 +1108,3 @@ if choice == 'About':
 
 	intro_markdown = read_markdown_file("README.md")
 	st.markdown(intro_markdown, unsafe_allow_html=True)
-# 	st.markdown(/app/streamlit_app/README.md.read_text(),unsafe_allow_html=True)
