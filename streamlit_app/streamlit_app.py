@@ -61,7 +61,7 @@ bayesian = st.container()
 TOOLTIPS = [("index", "$index"),("(x,y)", "(@x, @y)"),]
 
 # Function to covert data to csv
-@st.cache
+@st.cache_data
 def convert_feat_lim(df):
 	return df.to_csv().encode('utf-8')
 
@@ -190,6 +190,7 @@ if choice == 'Main Page':
 			data_file_target = data_file[[target[i] for i in range(len(target))]]
 			st.session_state['data_file_target'] = data_file_target
 			st.session_state["Check1"] = True
+			st.session_state["Check_lim"] = False
 			st.session_state["constraints"]={}
 
 		if "Check1" in st.session_state:
@@ -367,21 +368,6 @@ elif choice == 'Prediction':
 					                                           columns=['importance'+str(idx)])
 					    else: 
 					        feature_importances['importance'+str(idx)] = estimator[1].coef_
-# 					elif method == 'HistGradientBoostingRegressor':
-# 						if idx ==0:
-# 							result = permutation_importance(estimator[1].fit(data.iloc[:,0:lim_feature], data.iloc[:,feature_columns]), data.iloc[:,0:lim_feature], data.iloc[:,feature_columns],n_repeats=10,random_state=0)
-# 							feature_importances = pd.DataFrame(result["importances_mean"],
-# 		                       index = col_name,
-# 		                       columns = ['importance'+str(idx)])
-# 							feature_importances_mean = feature_importances.mean(axis = 1).sort_values(ascending = False)
-# 							feature_importances_std = pd.DataFrame(result["importances_std"],
-# 		                       index = col_name,
-# 		                       columns = ['importance'+str(idx)])
-# 							feature_importances_sd = feature_importances_std.mean(axis = 1).sort_values(ascending = False)
-# 							return feature_importances_mean,feature_importances_sd
-
-# 						else:
-# 							feature_importances['importance'+str(idx)] = pd.DataFrame(result["importances_mean"])
 					else:
 						if idx == 0:
 							feature_importances = pd.DataFrame(estimator[1].feature_importances_,
@@ -418,7 +404,7 @@ elif choice == 'Prediction':
 
 			return pred_, fig, fig2, test_mae_, test_rmse_, est_
 
-		methods = ['ElasticNet', 'RandomForestRegressor', 'XGBRegressor'] #, 'HistGradientBoostingRegressor']
+		methods = ['ElasticNet', 'RandomForestRegressor', 'XGBRegressor']
 		crossval_list = ['LeaveOneOut','K-Fold']
 		
 		with st.form('Prediction'):
@@ -451,7 +437,6 @@ elif choice == 'Prediction':
 			st.session_state['test_mae_']=test_mae_
 			st.session_state['test_rmse_']=test_rmse_
 			st.session_state['est_S'] = est_
-
 
 		# Part to add the buttons to save the graph
 		if 'fig' in st.session_state:
@@ -552,9 +537,7 @@ elif choice == 'Prediction':
 		    elif method == 'RandomForestRegressor':
 		        regressor = RandomForestRegressor(n_estimators = n_estimators, random_state = 0)
 		    elif method == 'XGBRegressor':
-		        regressor = XGBRegressor(n_estimators = n_estimators, seed = 0)
-# 		    elif method == 'HistGradientBoostingRegressor':
-# 		        regressor = HistGradientBoostingRegressor()		        
+		        regressor = XGBRegressor(n_estimators = n_estimators, seed = 0)		        
 		        
 		    def cross_val_est_fn(clf, x, y, cv):
 		        predictions = cross_val_predict(estimator = clf, 
@@ -579,7 +562,7 @@ elif choice == 'Prediction':
 		                                                          cv = crossvalidation)
 		    return pred_
 		best_pred = st.button('Find the best parameters')
-		methods = ['ElasticNet', 'RandomForestRegressor', 'XGBRegressor'] #,'HistGradientBoostingRegressor']
+		methods = ['ElasticNet', 'RandomForestRegressor', 'XGBRegressor']
 		crossvalidation = ['LeaveOneOut','K-Fold']
 		if best_pred:
 			analyze_pred=[]
@@ -650,11 +633,10 @@ elif choice == 'Bayesian':
 		'\n\nTo do this, you will need to download the CSV file generated below, complete it and then upload it.')
 		st.write("If you have a feature that can takes only some specific values, you can write them in the column 'Specific values' and write them as shown below. For example: 1, 3.4 ,5.6 ,13. ")
 		st.write('Additionally, if you want a feature to have only one specific value, you can write it in the Specific Values column like this: 100,100 or 0,0 for example if you want the value to be 100 or 0.')
+		
 		# The dataframe that the user must complete
-		data_lim = pd.DataFrame(np.zeros((len(st.session_state['feature_selected']),4)),
-			columns = ('Min','Max','Step','Specific Values'), 
-			index = (st.session_state['feature_selected']))
 
+		
 		# Make a template of the file that the user must complete with an example about the specific values
 		data_lim_example = pd.DataFrame(np.zeros((len(st.session_state['feature_selected']),4)),
 			columns = ('Min','Max','Step','Specific Values'), 
@@ -663,27 +645,59 @@ elif choice == 'Bayesian':
 		data_lim_example.iloc[1,3]='100,100'
 
 		st.dataframe(data_lim_example)
-
 		# Allow the user to download the file about the feature's limits that the user must complete
+
+		test = np.array(np.zeros((len(st.session_state['feature_selected']),1)),dtype='U')
+		test[:]="0"
+		df = np.array(np.concatenate((np.zeros((len(st.session_state['feature_selected']),3)),test),axis=1))
+		data_lim = pd.DataFrame(df,
+			columns = ('Min','Max','Step','Specific Values'), 
+			index = (st.session_state['feature_selected']))
 		data_lim_csv = convert_feat_lim(data_lim)
 		st.write('Click below to download a CSV. Fill out the template with the boundaries and step of the features you selected before. Then you will have to upload it below')
-		
 		st.download_button(
 			label = 'Click here to download the file with your features',
 			data = data_lim_csv,
 			file_name = 'limite_feature.csv',
 			mime = 'text/csv')
-
-		st.subheader('Upload the file containing the limite that you fixed')
-		def on_file_upload():
-			# This part is useful in case the user uploaded the wrong file or want to changed
-			st.session_state['check'] +=1
-
-		# The user must submit the file with the limits here
-		uploaded_lim = st.file_uploader('Select the file that you have completed', type = ['.csv'],on_change=on_file_upload)
 		
-		if not uploaded_lim and 'feature_lim' not in st.session_state:
-			st.stop()	
+		column_lim1 , column_lim2 = st.columns(2)
+		with column_lim1: # interactive dataframe
+			with st.form(key='Limit'):
+				new_data_lim = st.experimental_data_editor(data_lim)
+				validate_lim = st.form_submit_button(label='Validate limits')
+			if validate_lim:
+				st.session_state['feature_lim'] = new_data_lim
+				st.session_state["Check_lim"] = True
+				st.session_state["check_upload"]=False
+				data_lim_csv = convert_feat_lim(st.session_state['feature_lim'])		
+				st.download_button(
+					label = 'Save your limits for next time',
+					data = data_lim_csv,
+					file_name = "lim_feature.csv",
+					mime = 'text/csv')
+		with column_lim2: # upload the csv file
+			st.subheader('Upload the file containing the limite that you fixed')
+			def on_file_upload():
+				# This part is useful in case the user uploaded the wrong file or want to changed
+				st.session_state['check'] +=1
+			# The user must submit the file with the limits here
+			uploaded_lim = st.file_uploader('Select the file that you have completed', type = ['.csv'],on_change=on_file_upload)
+			if uploaded_lim:
+				st.session_state["check_upload"]=True
+				feature_lim = pd.read_csv(uploaded_lim)
+				st.session_state['feature_lim'] = pd.DataFrame(feature_lim.iloc[:,1:].values,
+				columns = ('Min','Max','Step','Specific Values'), 
+				index = (st.session_state['feature_selected']))
+				st.session_state['uploaded_lim'] = uploaded_lim
+		if 'check_upload' not in st.session_state or 'Check_lim' not in st.session_state:
+			st.stop()
+		if validate_lim:
+			st.session_state['feature_lim'] = new_data_lim
+			st.session_state["check_upload"]=False
+			st.session_state["Check_lim"]=True
+		elif st.session_state["check_upload"]:
+			validate_lim = False	
 
 	with bayesian:
 
@@ -692,35 +706,25 @@ elif choice == 'Bayesian':
 		st.write('The limits that you choose are :')
 		st.markdown('_Make sure that everything is correct_')
 
-		#This part is useful in case the user uploaded the wrong file or want to changed or when he change pages and come back
-		if not uploaded_lim:
-			feature_lim = st.session_state['feature_lim']
-		elif st.session_state['check']!=0:
-			feature_lim = pd.read_csv(uploaded_lim)
-			st.session_state['feature_lim'] = feature_lim
-			st.session_state['uploaded_lim'] =  uploaded_lim
-
-		# Display the limits that the user choose
-		st.dataframe(st.session_state['feature_lim'])
-
 		# If the file uploaded doesn't have the same number of line than the file downloaded,
 		# tell the user that there is a mistake
 		if len(data_lim)!= len(st.session_state['feature_lim']):
 			st.error("The file that you uploaded doesn't have the same number of line than your selection, make sure that you uploaded the right file or check your feature selection.")
+		
 		# Space of paramaters to be evaluated
 
 		st.write('With the limits that you choose, the possible values for each features are :')
 		space = []
 		
 		for i in range(len(st.session_state['feature_lim'].iloc[:,0])):
-			if st.session_state['feature_lim'].iloc[i,4] == 0:
-				row = [{'name': st.session_state['feature_lim'].iloc[i,0], 'type': 'discrete', 'domain': [it for it in np.arange(float(st.session_state['feature_lim'].iloc[i,1]), float(st.session_state['feature_lim'].iloc[i,2]) + float(st.session_state['feature_lim'].iloc[i,3]), float(st.session_state['feature_lim'].iloc[i,3]),dtype=float)]}]
+			if st.session_state['feature_lim'].iloc[i,3] == 0:
+				row = [{'name': st.session_state['feature_lim'].index[i], 'type': 'discrete', 'domain': [it for it in np.arange(float(st.session_state['feature_lim'].iloc[i,0]), float(st.session_state['feature_lim'].iloc[i,1]) + float(st.session_state['feature_lim'].iloc[i,2]), float(st.session_state['feature_lim'].iloc[i,2]),dtype=float)]}]
 				space.extend(row)
-			elif st.session_state['feature_lim'].iloc[i,4] == '0':
-				row = [{'name': st.session_state['feature_lim'].iloc[i,0], 'type': 'discrete', 'domain': [it for it in np.arange(float(st.session_state['feature_lim'].iloc[i,1]), float(st.session_state['feature_lim'].iloc[i,2]) + float(st.session_state['feature_lim'].iloc[i,3]), float(st.session_state['feature_lim'].iloc[i,3]),dtype=float)]}]
+			elif st.session_state['feature_lim'].iloc[i,3] == '0':
+				row = [{'name': st.session_state['feature_lim'].index[i], 'type': 'discrete', 'domain': [it for it in np.arange(float(st.session_state['feature_lim'].iloc[i,0]), float(st.session_state['feature_lim'].iloc[i,1]) + float(st.session_state['feature_lim'].iloc[i,2]), float(st.session_state['feature_lim'].iloc[i,2]),dtype=float)]}]
 				space.extend(row)
 			else:
-				row = [{'name': st.session_state['feature_lim'].iloc[i,0], 'type': 'discrete', 'domain': [it for it in np.array(np.fromstring(st.session_state['feature_lim'].iloc[i,4], dtype=float, sep=','))]}]
+				row = [{'name': st.session_state['feature_lim'].index[i], 'type': 'discrete', 'domain': [it for it in np.array(np.fromstring(st.session_state['feature_lim'].iloc[i,3], dtype=float, sep=','))]}]
 				space.extend(row)
 		
 		st.dataframe(space)
@@ -739,8 +743,6 @@ elif choice == 'Bayesian':
 		'\n\n  Exemple : If you want x[:,i] + x[:,j] = 1, you must write:  x[:,i] + x[:,j] in the first space and 1 in the other.\n'
 		'\n\n  Exemple 2 : If you want x[:,i] + x[:,j] ∈ [0.5,10], you must write:  x[:,i] + x[:,j] in the first space and [0.5,10] in the other. \n\n'
 		'It is recommended that you write down the constraint that you put here so you can remember them correctly later if you want to perform the same analysis.')
-		
-
 
 		# Selection of how many constraints the user want
 		column1, column2 = st.columns(2)
