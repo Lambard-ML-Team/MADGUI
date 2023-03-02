@@ -661,6 +661,9 @@ elif choice == 'Bayesian':
 			file_name = 'limite_feature.csv',
 			mime = 'text/csv')
 		
+		st.header('Bayesian Optimization')
+		st.subheader('Limits and constraints')
+		
 		column_lim1 , column_lim2 = st.columns(2)
 		with column_lim1: # interactive dataframe
 			with st.form(key='Limit'):
@@ -701,9 +704,6 @@ elif choice == 'Bayesian':
 
 	with bayesian:
 
-		st.header('Bayesian Optimization')
-		st.subheader('Limits and constraints')
-		st.write('The limits that you choose are :')
 		st.markdown('_Make sure that everything is correct_')
 
 		# If the file uploaded doesn't have the same number of line than the file downloaded,
