@@ -1103,6 +1103,12 @@ elif choice == 'Bayesian':
 				mime = 'text/csv')
 
 if choice == 'About':
+
+	def read_markdown_file(markdown_file):
+	    return Path(markdown_file).read_text()
+
+	intro_markdown = read_markdown_file("README.md")
+	st.markdown(intro_markdown, unsafe_allow_html=True)
 	st.header("Contact")
 	st.write("If you have any questions, bugs, recommandations, you can contact us by using the form below.")
 	
@@ -1126,9 +1132,3 @@ if choice == 'About':
 	        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 	local_css("style/email_style.css")
-####
-	def read_markdown_file(markdown_file):
-	    return Path(markdown_file).read_text()
-
-	intro_markdown = read_markdown_file("README.md")
-	st.markdown(intro_markdown, unsafe_allow_html=True)
