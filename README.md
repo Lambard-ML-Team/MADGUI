@@ -6,7 +6,9 @@ Can be used directly without any installation with the link below:
 
 Developers:
 
-![image](https://user-images.githubusercontent.com/108456770/215394202-2cba72ef-816d-4e05-af71-78343b82b6e4.png)
+Christophe BAJAN* & Guillaume LAMBARD*
+
+*National Institute for Materials Science, Tsukuba, Japan
 
 The application allow users to analyse their datas (with Pearson's correlation for example)
 
