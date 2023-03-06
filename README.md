@@ -1,4 +1,4 @@
-# streamlit_app
+# MADGUI : Material Design Graphical User Interface
 User-friendly Graphical User Interface (GUI) developed at the National Institute for Materials Science (NIMS, MaDIS) for performing statistical data analysis, machine learning (ML) modelisation, and composition/process optimisation through Bayesian optimisation.
 
 Can be used directly without any installation with the link below:
