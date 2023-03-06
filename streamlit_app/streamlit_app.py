@@ -1104,7 +1104,8 @@ elif choice == 'Bayesian':
 
 if choice == 'About':
 	st.header("Contact")
-
+	st.write("If you have any questions, bugs, recommandations, you can contact us by using the form below.")
+	
 	contact_form = """
 	<form action="https://formsubmit.co/{}" method="POST">
 	     <input type="hidden" name="_captcha" value="false">
