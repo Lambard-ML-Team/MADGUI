@@ -10,7 +10,7 @@ Christophe BAJAN* & Guillaume LAMBARD*
 
 *National Institute for Materials Science, Tsukuba, Japan
 
-![image](https://user-images.githubusercontent.com/108456770/223058155-fe3cee0a-035a-46b3-94b5-7d45557d46d1.png)
+![image](https://user-images.githubusercontent.com/108456770/223058431-34a37eff-d3a4-4e62-8a25-7f66c3be654c.png)
 
 The application allow users to analyse their datas (with Pearson's correlation for example)
 We utilize four methods: ElasticNet, RandomForestRegressor, XGBRegressor or HistGradientBoostingRegressor, and two cross-validation methods: LeaveOneOut or K-fold.
