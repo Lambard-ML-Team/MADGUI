@@ -73,7 +73,7 @@ def convert_feat_lim(df):
 	############
 
 # The navigation between pages will be on the sidebar with the data uploader and the reset button
-st.image('/app/streamlit_app/streamlit_app/madgui_logo.png')
+
 with st.sidebar:
 
 	# Navigation part in the sidebar
@@ -97,7 +97,7 @@ with st.sidebar:
 	
 
 if choice == 'Main Page':
-
+	st.image('/app/streamlit_app/streamlit_app/madgui_logo.png')
 	############
 	### On this page the user must load his data, select his feature and his target 
 	### and check if everything is correct before continuing
