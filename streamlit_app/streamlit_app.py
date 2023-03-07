@@ -75,7 +75,7 @@ def convert_feat_lim(df):
 # The navigation between pages will be on the sidebar with the data uploader and the reset button
 
 with st.sidebar:
-	st.image('/app/streamlit_app/streamlit_app/madgui_logo.png',use_column_width='auto')
+	st.image('/app/streamlit_app/streamlit_app/madgui_logo.png',use_column_width='True')
 	# Navigation part in the sidebar
 	choice = option_menu('Navigation', ['Main Page','Prediction','Bayesian','About'],
 		icons = ['house', 'tree','app-indicator','info-circle'],
