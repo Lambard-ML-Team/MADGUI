@@ -19,7 +19,7 @@ We utilize four methods: ElasticNet, RandomForestRegressor, XGBRegressor or Hist
 
 ![image](https://user-images.githubusercontent.com/108456770/223052582-a2dc7cf4-a7f4-4123-9645-4eda6b172718.png)
 
-An important part of the optimization is the limit for the features and the constraints, the application take both of it in consideration for the optimization.
+An important part of the optimization is the limit for features and possibility to apply constraints, the application take both of it in consideration for the optimization.
 The last part allow users to use prediction model and Bayesian Optimization at the same time to unbias the data for the initialisation of the Bayesian Optimization.
 
 ![image](https://user-images.githubusercontent.com/108456770/223050417-fe3c8d5b-636d-4176-bedd-ede96b9ff371.png)
