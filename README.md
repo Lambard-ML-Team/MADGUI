@@ -8,7 +8,7 @@ Developers:
 
 Christophe BAJAN* & Guillaume LAMBARD*
 
-*National Institute for Materials Science, Tsukuba, Japan
+**National Institute for Materials Science, Tsukuba, Japan*
 
 <img src="https://user-images.githubusercontent.com/108456770/223059434-bfa07661-1519-4b48-8a49-3d65c8e5623d.png" alt= “flowchart” width="1000" height="600">
 
