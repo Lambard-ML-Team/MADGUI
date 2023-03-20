@@ -570,22 +570,26 @@ elif choice == 'Prediction':
 				for j in crossvalidation:
 					if j=='LeaveOneOut':
 						k=0
-						pred_ = analyze_function_pred(method = i, 
-													data = st.session_state['data_selected'], 
-													target = target, 
-													crossval=j,
-													k_num=0,
-													lim_feature = lim_feature)
+						pred_ = analyze_function_pred(
+							method = i, 
+							data = st.session_state['data_selected'], 
+							target = target, 
+							crossval=j,
+							k_num=0,
+							lim_feature = lim_feature
+							)
 						row=np.array([i,j,k, np.sum(np.abs(st.session_state['data_file_selected'].iloc[:,feature_columns]-pred_))])
 						analyze_pred.append(row)
 					else:
 						for k in range(2,len(st.session_state['data_selected'].iloc[:,0])-1):
-							pred_ = analyze_function_pred(method = i, 
-													data = st.session_state['data_selected'], 
-													target = target, 
-													crossval=j,
-													k_num=k,
-													lim_feature = lim_feature)
+							pred_ = analyze_function_pred(
+								method = i, 
+								data = st.session_state['data_selected'], 
+								target = target, 
+								crossval=j,
+								k_num=k,
+								lim_feature = lim_feature
+								)
 							row=np.array([i,j,k, np.sum(np.abs(st.session_state['data_file_selected'].iloc[:,feature_columns]-pred_))])
 							analyze_pred.append(row)
 
