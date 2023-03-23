@@ -566,44 +566,55 @@ elif choice == 'Prediction':
 		crossvalidation = ['LeaveOneOut','K-Fold']
 		if best_pred:
 			analyze_pred=[]
+			indice=[]
 			for i in methods:
 				for j in crossvalidation:
 					if j=='LeaveOneOut':
 						k=0
-						pred_ = analyze_function_pred(
-							method = i, 
-							data = st.session_state['data_selected'], 
-							target = target, 
-							crossval=j,
-							k_num=0,
-							lim_feature = lim_feature
-							)
-						row=np.array([i,j,k, np.sum(np.abs(st.session_state['data_file_selected'].iloc[:,feature_columns]-pred_))])
+						pred_ = analyze_function_pred(method = i, 
+													data = st.session_state['data_selected'], 
+													target = target, 
+													crossval=j,
+													k_num=0,
+													lim_feature = lim_feature)
+						row=np.array([np.sum(np.abs(st.session_state['data_file_selected'].iloc[:,feature_columns]-pred_))])
 						analyze_pred.append(row)
+						indice.append([i,j,k])
 					else:
 						for k in range(2,len(st.session_state['data_selected'].iloc[:,0])-1):
-							pred_ = analyze_function_pred(
-								method = i, 
-								data = st.session_state['data_selected'], 
-								target = target, 
-								crossval=j,
-								k_num=k,
-								lim_feature = lim_feature
-								)
-							row=np.array([i,j,k, np.sum(np.abs(st.session_state['data_file_selected'].iloc[:,feature_columns]-pred_))])
+							pred_ = analyze_function_pred(method = i, 
+													data = st.session_state['data_selected'], 
+													target = target, 
+													crossval=j,
+													k_num=k,
+													lim_feature = lim_feature)
+							row=np.array([np.sum(np.abs(st.session_state['data_file_selected'].iloc[:,feature_columns]-pred_))])
 							analyze_pred.append(row)
+							indice.append([i,j,k])
 
 			st.session_state['analyze_pred'] = np.array(analyze_pred)
+			st.session_state["indice"] = indice
 
 		if 'analyze_pred' in st.session_state:		
-			a = np.argmin(st.session_state['analyze_pred'][:,3].astype(np.float))
-			st.write(st.session_state['analyze_pred'][a,:-1])
-			pred_, fig, fig2, test_mae_, test_rmse_,est_ = analyze_function(method = st.session_state['analyze_pred'][a,:][0], 
+			a = np.argmin(st.session_state['analyze_pred'][:].astype(np.float))
+			st.dataframe(st.session_state["indice"][a])
+
+
+			_,fig,_,test_mae_,test_rmse_,_= analyze_function(method = st.session_state["indice"][a][0], 
 											data = st.session_state['data_selected'], 
 											target = target, 
-											crossval=st.session_state['analyze_pred'][a,:][1],
-											k_num=st.session_state['analyze_pred'][a,:][2].astype(np.int),
+											crossval= st.session_state["indice"][a][1],
+											k_num=st.session_state["indice"][a][2],
 											lim_feature = lim_feature)
+						# MAE and RMSE:
+			if st.session_state["indice"][a][1] == 'LeaveOneOut':
+				st.write('Non-linear regression on %s'%st.session_state['target_predi'] + ' with %s'%st.session_state["indice"][a][0] + ' and %s'%st.session_state["indice"][a][1] + ' :\n\tMAE: {0:.3f} +/- {1:.3f}\n\tRMSE: {2:.3f} +/- {3:.3f}'.\
+			    	format(np.mean(test_mae_), np.std(test_mae_), np.mean(test_rmse_), np.std(test_rmse_)))
+			if st.session_state["indice"][a][1] == 'K-Fold':
+				st.write('Non-linear regression on %s'%st.session_state['target_predi'] + ' with %s'%st.session_state["indice"][a][0] + ' and %s'%st.session_state["indice"][a][1] + ' = %s'%st.session_state["indice"][a][2] + ' :\n\tMAE: {0:.3f} +/- {1:.3f}\n\tRMSE: {2:.3f} +/- {3:.3f}'.\
+			    	format(np.mean(test_mae_), np.std(test_mae_), np.mean(test_rmse_), np.std(test_rmse_)))
+			
+
 			st.bokeh_chart(fig)
 		
 elif choice == 'Bayesian':
