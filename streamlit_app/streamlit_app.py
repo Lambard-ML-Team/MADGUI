@@ -929,16 +929,16 @@ elif choice == 'Bayesian':
 			st.session_state['iter_count'] = iter_count
 			
 
-		fig_ = figure(
-			title='Minimization of the data below',
-			sizing_mode="stretch_width",
-			x_axis_label='Data point',
-			y_axis_label='Objectif (Combinaison of your selection)',
-			tooltips=TOOLTIPS,
-				)		
-		X = pd.DataFrame(np.arange(len(st.session_state['data_file_selected'])))
-		fig_.circle(X[0],Y_init[:,0])
-		st.bokeh_chart(fig_)	
+# 		fig_ = figure(
+# 			title='Minimization of the data below',
+# 			sizing_mode="stretch_width",
+# 			x_axis_label='Data point',
+# 			y_axis_label='Objectif (Combinaison of your selection)',
+# 			tooltips=TOOLTIPS,
+# 				)	
+# 		X = pd.DataFrame(np.arange(len(st.session_state['data_file_selected'])))
+# 		fig_.circle(X[0],Y_init[:,0])
+# 		st.bokeh_chart(fig_)	
 
 		###################
 		#### Code for Bayesian Optimization
