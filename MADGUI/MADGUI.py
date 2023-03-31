@@ -40,9 +40,9 @@ from scipy.optimize import minimize
 
 # Font for Japanese character in matplotlib and seaborn
 
-fpath = os.path.join(os.getcwd(), "streamlit_app/Noto_Sans_JP/NotoSansJP-Regular.otf")
+fpath = os.path.join(os.getcwd(), "MADGUI/Noto_Sans_JP/NotoSansJP-Regular.otf")
 prop = fm.FontProperties(fname=fpath)
-font_dir = ['streamlit_app/Noto_Sans_JP']
+font_dir = ['MADGUI/Noto_Sans_JP']
 for font in fm.findSystemFonts(font_dir):
     fm.fontManager.addfont(font)
 rcParams['font.family'] = 'Noto Sans JP'
@@ -75,7 +75,7 @@ def convert_feat_lim(df):
 # The navigation between pages will be on the sidebar with the data uploader and the reset button
 
 with st.sidebar:
-	st.image('/app/streamlit_app/streamlit_app/madgui_logo.png',use_column_width='auto')
+	st.image('/app/MADGUI/MADGUI/madgui_logo.png',use_column_width='auto')
 	# Navigation part in the sidebar
 	choice = option_menu('Navigation', ['Main Page','Prediction','Bayesian','About'],
 		icons = ['house', 'tree','app-indicator','info-circle'],
@@ -120,13 +120,13 @@ if choice == 'Main Page':
 		
 		with st.expander('⚠ Read before continuing ⚠'):
 			st.write('Before uploading, you have to make sure that your data (csv/xlsx) look like this :')
-			st.image('/app/streamlit_app/streamlit_app/Data/exemple_data.png')
+			st.image('/app/MADGUI/MADGUI/Data/exemple_data.png')
 			st.write('The first line of your data file must contain the names of your columns. Your data should be in the first sheet of your file and there should be no blank cells. All values in your dataset should be numerical.')
 			st.write("Features are the parameters that you can change during your experiment. Targets are the results of those experiment and are your objective.")
 			st.write("For instance, Feature_1 and Feature_4 are numerical values, while Feature_2 and Feature_3 are categorical values (respectively 2 and 3 choices). Feature_2 can be 'with' or 'without' something  where 'with' is represented by the numerical value of 1 and 'without' is represented by the numerical value of 2.\n"
 				'It is important that there are no blank cells in your data and that all values used are in numerical format.')
 			st.write('After uploading you should see something like this :')
-			exemple = pd.read_csv('/app/streamlit_app/streamlit_app/Data/Exemple_data.csv',sep = ',')
+			exemple = pd.read_csv('/app/MADGUI/MADGUI/Data/Exemple_data.csv',sep = ',')
 			st.dataframe(exemple)
 			st.subheader('Upload your dataset on the sidebar')
 			
