@@ -1,4 +1,4 @@
-# To run this file tap: ' streamlit run streamlit_test.py  ' in the terminal 
+# To run this file tap: ' streamlit run MADGUI.py  ' in the terminal 
 # while being in the repertory of this file.
 # The recessary librairy are :
 
