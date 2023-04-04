@@ -100,10 +100,17 @@ After all those limits and constraints you are ready to launch the optimisation.
 
 <img src="https://user-images.githubusercontent.com/108456770/229738442-40b938d3-5e2b-483b-92ea-5a5c8501b077.png" alt = "optimisation" width="550" height="600">
 
+The result of the optimisation will be display has a dataframe and is downloadable as a csv file.
+
+<p align="center">
+<img src="https://user-images.githubusercontent.com/108456770/229743191-2c970db1-93ec-4f2d-a6f2-4b219cf366af.png" alt = "optimisation_result" width="550" height="500">
+</p>
+
 The last part allow users to use prediction model and Bayesian Optimization at the same time to unbias the data for the initialisation of the Bayesian Optimization.
 
+<img src="https://user-images.githubusercontent.com/108456770/229746786-f4bfa5e8-1799-409a-9fc5-fbf038fd9620.png" alt = "optimisation_predi" width="550" height="600">
 
 Here is an explanation of the Bayesian Optimization (source: http://krasserm.github.io/2018/03/21/bayesian-optimization/)
 
-![image](https://user-images.githubusercontent.com/108456770/215394614-fa624138-568c-4951-b6e7-a4e9c3e005e0.png)
+<img src="https://user-images.githubusercontent.com/108456770/215394614-fa624138-568c-4951-b6e7-a4e9c3e005e0.png" alt="Bayesian_explication">
 
