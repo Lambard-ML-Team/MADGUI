@@ -77,12 +77,12 @@ The GUI also allow users to analyse their datas with Pearson's correlation, the 
 <img src="https://user-images.githubusercontent.com/108456770/229713726-eaf2009f-21cc-422c-8408-ec142b766477.png" alt = "Pearson" width="600" height="600" margin:auto;">
 </p>
 
+## Prediction
 
-We utilize four methods: ElasticNet, RandomForestRegressor, XGBRegressor or HistGradientBoostingRegressor, and two cross-validation methods: LeaveOneOut or K-fold.
+We utilize three machine learning methods: ElasticNet, RandomForestRegressor and XGBRegressor, with two kind of cross-validation: LeaveOneOut or K-fold for the prediction.
 
-![image](https://user-images.githubusercontent.com/108456770/223050037-8596b6bb-5d73-4d86-bed0-88a3eef6fbc7.png)
+<img src="https://user-images.githubusercontent.com/108456770/229722250-cd608077-eb25-4594-b4ed-aa1052458d46.png" alt = "prediction_param" width="530" height="600"><img src="https://user-images.githubusercontent.com/108456770/229723072-d9ba65fb-a426-4cda-9ecb-c3456e9b59f7.png" alt = "prediction" width="600" height="600">
 
-![image](https://user-images.githubusercontent.com/108456770/223052582-a2dc7cf4-a7f4-4123-9645-4eda6b172718.png)
 
 An important part of the optimization is the limit for features and possibility to apply constraints, the application take both of it in consideration for the optimization.
 The last part allow users to use prediction model and Bayesian Optimization at the same time to unbias the data for the initialisation of the Bayesian Optimization.
