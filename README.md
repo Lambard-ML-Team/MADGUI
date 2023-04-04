@@ -55,8 +55,7 @@ When your file is prepared, you can use MADGUI by uploading your file via the bu
 ## Initialisation
 
 <p style="text-align:justify;">
-After uploading your data you have to select what columns are features and which one are the target.
-/!\ Take note that the columns where the standard deviation is 0 are already take out from the selection because it doesn't help the prediction or optimisation.
+After uploading your data you have to select what columns are features and which one are the target. Take note that the columns where the standard deviation is 0 are already take out from the selection because it doesn't help the prediction or optimisation.
 </p>
 
 <p align="center">
@@ -81,8 +80,11 @@ The GUI also allow users to analyse their datas with Pearson's correlation, the 
 
 We utilize three machine learning methods: ElasticNet, RandomForestRegressor and XGBRegressor, with two kind of cross-validation: LeaveOneOut or K-fold for the prediction.
 
-<img src="https://user-images.githubusercontent.com/108456770/229722250-cd608077-eb25-4594-b4ed-aa1052458d46.png" alt = "prediction_param" width="530" height="600"><img src="https://user-images.githubusercontent.com/108456770/229723072-d9ba65fb-a426-4cda-9ecb-c3456e9b59f7.png" alt = "prediction" width="600" height="600">
+<img src="https://user-images.githubusercontent.com/108456770/229722250-cd608077-eb25-4594-b4ed-aa1052458d46.png" alt = "prediction_param" width="600" height="530"><img src="https://user-images.githubusercontent.com/108456770/229723072-d9ba65fb-a426-4cda-9ecb-c3456e9b59f7.png" alt = "prediction" width="600" height="600">
 
+After the prediction, you can use the feature importance graph to see which features have the highest score for the prediction model. If the model is accurate, you can then reduce the number of features needed by using only those that have scored high.
+
+<img src="https://user-images.githubusercontent.com/108456770/229725662-efce67b2-6240-4902-8438-80e52d7085eb.png" alt = "feature_importance" width="530" height="600">
 
 An important part of the optimization is the limit for features and possibility to apply constraints, the application take both of it in consideration for the optimization.
 The last part allow users to use prediction model and Bayesian Optimization at the same time to unbias the data for the initialisation of the Bayesian Optimization.
