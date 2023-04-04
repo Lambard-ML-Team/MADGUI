@@ -43,12 +43,13 @@ When your file is prepared, you can use MADGUI by uploading your file via the bu
 
 <img src="https://user-images.githubusercontent.com/108456770/229692818-7cbce704-5174-4334-b260-23dd38fcf9d4.png" alt= “sidebar” width="167" height="459.5">
 
-## <span style="color:blue;">Initialisation</span>
+## Initialisation
 
 After uploading your data you have to select what columns are features and which one are the target.
 /!\ Take note that the columns where the standard deviation is 0 are already take out from the selection because it doesn't help the prediction or optimisation.
-
-<img src="https://user-images.githubusercontent.com/108456770/229695425-a3304dcb-614c-486a-acdb-e9ae968f6c92.png" alt = "selection_features" width="358.5" height="421">
+<p align="center">
+<img src="https://user-images.githubusercontent.com/108456770/229695425-a3304dcb-614c-486a-acdb-e9ae968f6c92.png" alt = "selection_features" width="358.5" height="421" margin:auto;">
+</p>
 
 The application allow users to analyse their datas (with Pearson's correlation for example)
 We utilize four methods: ElasticNet, RandomForestRegressor, XGBRegressor or HistGradientBoostingRegressor, and two cross-validation methods: LeaveOneOut or K-fold.
