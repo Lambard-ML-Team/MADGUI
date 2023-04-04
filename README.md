@@ -30,8 +30,9 @@ We have developed MADUI, a Material Design Graphical User Interface that require
 </p>
 
 The following parts are the explanation of how to use the GUI.
-
-<img src="https://user-images.githubusercontent.com/108456770/223059434-bfa07661-1519-4b48-8a49-3d65c8e5623d.png" alt= “flowchart” width="800" height="450">
+<p align="center">
+<img src="https://user-images.githubusercontent.com/108456770/223059434-bfa07661-1519-4b48-8a49-3d65c8e5623d.png" alt= “flowchart” width="800" height="450" margin:auto;">
+</p>
 
 ## Data Preparation
 
