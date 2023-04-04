@@ -47,10 +47,9 @@ Here is an exemple of what it must look like:
 
 <img src="https://user-images.githubusercontent.com/108456770/229692238-a396619f-b0ac-4043-8d04-5316cf55c72b.png" alt= “dataset_exemple”>
 
-
 When your file is prepared, you can use MADGUI by uploading your file via the button in the sidebar:
 
-<img src="https://user-images.githubusercontent.com/108456770/229692818-7cbce704-5174-4334-b260-23dd38fcf9d4.png" alt= “sidebar” width="167" height="459.5">
+<img src="https://user-images.githubusercontent.com/108456770/229752477-9c94ea3c-9b9e-4aa0-8d7d-37b5940dc676.png" alt= “sidebar” width="167" height="459.5">
 
 ## Initialisation
 
