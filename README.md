@@ -47,6 +47,7 @@ Here is an exemple of what it must look like:
 
 <img src="https://user-images.githubusercontent.com/108456770/229692238-a396619f-b0ac-4043-8d04-5316cf55c72b.png" alt= “dataset_exemple”>
 
+
 When your file is prepared, you can use MADGUI by uploading your file via the button in the sidebar:
 
 <img src="https://user-images.githubusercontent.com/108456770/229692818-7cbce704-5174-4334-b260-23dd38fcf9d4.png" alt= “sidebar” width="167" height="459.5">
@@ -62,7 +63,16 @@ After uploading your data you have to select what columns are features and which
 <img src="https://user-images.githubusercontent.com/108456770/229695425-a3304dcb-614c-486a-acdb-e9ae968f6c92.png" alt = "selection_features" width="358.5" height="421" margin:auto;">
 </p>
 
+## Simple analysis
+
+After your selection the GUI perform statistical analysis :
+
+<p align="center">
+<img src="https://user-images.githubusercontent.com/108456770/229703230-bf4f9f3d-1ff6-4d6b-b610-cf4f10327114.png" alt = "quick_analysis" width="460.8" height="500"> <img src="https://user-images.githubusercontent.com/108456770/229703254-99e79a55-bdfe-4ece-88a3-86c8428c6e33.png" alt = "correlation" width="500" height="500">
+</p>
+
 The application allow users to analyse their datas (with Pearson's correlation for example)
+
 We utilize four methods: ElasticNet, RandomForestRegressor, XGBRegressor or HistGradientBoostingRegressor, and two cross-validation methods: LeaveOneOut or K-fold.
 
 ![image](https://user-images.githubusercontent.com/108456770/223050037-8596b6bb-5d73-4d86-bed0-88a3eef6fbc7.png)
