@@ -77,7 +77,7 @@ def convert_feat_lim(df):
 with st.sidebar:
 	st.image('/app/madgui/MADGUI/madgui_logo.png',use_column_width='auto')
 	# Navigation part in the sidebar
-	choice = option_menu('Navigation', ['Main Page','Prediction','Bayesian','About',"Contact"],
+	choice = option_menu('Navigation', ['Main Page','Prediction','Bayesian','About','Contact'],
 		icons = ['house', 'tree','app-indicator','info-circle','postcard'],
 		menu_icon = 'map', default_index=0,
 		styles={
