@@ -112,11 +112,6 @@ if choice == 'Main Page':
 			'You will be asked to complete different parts of this program. You must start by completing the Main Page where you are currently located. Then you will be able to do either the prediction or the Bayesian optimization. \n'
 			"Take note that if you change anything after submitting your selection, you must click 'Submit' again.")
 		
-		st.markdown(":justify[
-			Welcome! The objective of this project is to help you to analyze your data, to find the best next sample to reach your objective using Bayesian Optimization. You will be asked to complete different parts of this program. You must start by completing the Main Page where you are currently located. Then you will be able to do either the prediction or the Bayesian optimization. Take note that if you change anything after submitting your selection, you must click 'Submit' again.
-			    ]
-		)
-		
 		st.header('1 - Data upload')
 		st.info("Read carefully before uploading your data ")
 
