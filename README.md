@@ -3,7 +3,10 @@
 </p>
 
 # MADGUI : Material Design Graphical User Interface 
+
+<p style="text-align:justify;">
 User-friendly Graphical User Interface (GUI) developed at the National Institute for Materials Science (NIMS, MaDIS) for performing statistical data analysis, machine learning (ML) modelisation, and composition/process optimisation through Bayesian optimisation.
+</p>
 
 Can be used directly with the link below:
 
