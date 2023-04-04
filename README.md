@@ -65,13 +65,18 @@ After uploading your data you have to select what columns are features and which
 
 ## Simple analysis
 
-After your selection the GUI perform statistical analysis :
+After your selection the GUI perform statistical analysis, first is a quick analysis of each columns (mean, min, max, std,...) and second is a correlation graph between each columns :
 
 <p align="center">
-<img src="https://user-images.githubusercontent.com/108456770/229703230-bf4f9f3d-1ff6-4d6b-b610-cf4f10327114.png" alt = "quick_analysis" width="460.8" height="500"> <img src="https://user-images.githubusercontent.com/108456770/229703254-99e79a55-bdfe-4ece-88a3-86c8428c6e33.png" alt = "correlation" width="500" height="500">
+<img src="https://user-images.githubusercontent.com/108456770/229703230-bf4f9f3d-1ff6-4d6b-b610-cf4f10327114.png" alt = "quick_analysis" width="553" height="600"> <img src="https://user-images.githubusercontent.com/108456770/229703254-99e79a55-bdfe-4ece-88a3-86c8428c6e33.png" alt = "correlation" width="600" height="600">
 </p>
 
-The application allow users to analyse their datas (with Pearson's correlation for example)
+The GUI also allow users to analyse their datas with Pearson's correlation, the Pearson correlation measures the strength of the linear relationship between two variables:
+
+<p align="center">
+<img src="https://user-images.githubusercontent.com/108456770/229713726-eaf2009f-21cc-422c-8408-ec142b766477.png" alt = "Pearson" width="600" height="600" margin:auto;">
+</p>
+
 
 We utilize four methods: ElasticNet, RandomForestRegressor, XGBRegressor or HistGradientBoostingRegressor, and two cross-validation methods: LeaveOneOut or K-fold.
 
