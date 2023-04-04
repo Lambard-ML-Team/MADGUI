@@ -4,7 +4,9 @@
 User-friendly Graphical User Interface (GUI) developed at the National Institute for Materials Science (NIMS, MaDIS) for performing statistical data analysis, machine learning (ML) modelisation, and composition/process optimisation through Bayesian optimisation.
 
 Can be used directly without any installation with the link below:
-https://lambard-ml-team-madgui.streamlit.app/
+
+Streamlit app:  https://lambard-ml-team-madgui.streamlit.app/
+GitHub page: https://github.com/Lambard-ML-Team/MADGUI
 
 Developers:
 
