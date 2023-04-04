@@ -43,7 +43,7 @@ When your file is prepared, you can use MADGUI by uploading your file via the bu
 
 <img src="https://user-images.githubusercontent.com/108456770/229692818-7cbce704-5174-4334-b260-23dd38fcf9d4.png" alt= “sidebar” width="167" height="459.5">
 
-## Initialisation
+## <span style="color:blue;">Initialisation</span>
 
 After uploading your data you have to select what columns are features and which one are the target.
 /!\ Take note that the columns where the standard deviation is 0 are already take out from the selection because it doesn't help the prediction or optimisation.
