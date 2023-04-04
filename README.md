@@ -11,17 +11,22 @@ Code accessible on GitHub:
 
 GitHub page: https://github.com/Lambard-ML-Team/MADGUI
 
-Developers:
+### Developers:
 
 Christophe BAJAN* & Guillaume LAMBARD*
 
 **National Institute for Materials Science, Tsukuba, Japan*
 
-<img src="https://user-images.githubusercontent.com/108456770/223059434-bfa07661-1519-4b48-8a49-3d65c8e5623d.png" alt= “flowchart” width="1000" height="600">
+
+## Introduction
 
 We have developed MADUI, a Material Design Graphical User Interface that require no programming knowledge and can be applied to a wide range of fields. This GUI is built using Python and various python libraries including Streamlit, scikit-learn, seaborn, xgboost and more importantly GpyOpt for the Bayesian Optimisation (BO) part. BO is a probability model that find the minimum/maximum of a black-box function (objective function) using a prior function based only on the data collected and performing multiple iterations. The goal of MADGUI is to help researchers to reach the optimum parameters in their research. 
 
 The following parts are the explanation of how to use the GUI.
+
+<img src="https://user-images.githubusercontent.com/108456770/223059434-bfa07661-1519-4b48-8a49-3d65c8e5623d.png" alt= “flowchart” width="1000" height="600">
+
+## Data Preparation
 
 Firstly, to use correctly the GUI you need to have a tabular dataset with some specifications. There is some rules to follow:
 * Only numerical values
@@ -34,6 +39,16 @@ Here is an exemple of what it must look like:
 
 ![Screenshot 2023-04-04 at 14 07 37](https://user-images.githubusercontent.com/108456770/229692238-a396619f-b0ac-4043-8d04-5316cf55c72b.png)
 
+When your file is prepared, you can use MADGUI by uploading your file via the button in the sidebar:
+
+<img src="https://user-images.githubusercontent.com/108456770/229692818-7cbce704-5174-4334-b260-23dd38fcf9d4.png" alt= “sidebar” width="167" height="459.5">
+
+## Initialisation
+
+After uploading your data you have to select what columns are features and which one are the target.
+/!\ Take note that the columns where the standard deviation is 0 are already take out from the selection because it doesn't help the prediction or optimisation.
+
+![Screenshot 2023-03-31 at 16 20 35](https://user-images.githubusercontent.com/108456770/229695425-a3304dcb-614c-486a-acdb-e9ae968f6c92.png)
 
 The application allow users to analyse their datas (with Pearson's correlation for example)
 We utilize four methods: ElasticNet, RandomForestRegressor, XGBRegressor or HistGradientBoostingRegressor, and two cross-validation methods: LeaveOneOut or K-fold.
