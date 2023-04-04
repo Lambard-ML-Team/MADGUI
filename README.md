@@ -110,6 +110,8 @@ The last part allow users to use prediction model and Bayesian Optimization at t
 
 <img src="https://user-images.githubusercontent.com/108456770/229746786-f4bfa5e8-1799-409a-9fc5-fbf038fd9620.png" alt = "optimisation_predi" width="550" height="600">
 
+## Bayesian
+
 Here is an explanation of the Bayesian Optimization (source: http://krasserm.github.io/2018/03/21/bayesian-optimization/)
 
 <img src="https://user-images.githubusercontent.com/108456770/215394614-fa624138-568c-4951-b6e7-a4e9c3e005e0.png" alt="Bayesian_explication">
