@@ -25,7 +25,9 @@ Christophe BAJAN* & Guillaume LAMBARD*
 
 ## Introduction
 
+<p style="text-align:justify;">
 We have developed MADUI, a Material Design Graphical User Interface that require no programming knowledge and can be applied to a wide range of fields. This GUI is built using Python and various python libraries including Streamlit, scikit-learn, seaborn, xgboost and more importantly GpyOpt for the Bayesian Optimisation (BO) part. BO is a probability model that find the minimum/maximum of a black-box function (objective function) using a prior function based only on the data collected and performing multiple iterations. The goal of MADGUI is to help researchers to reach the optimum parameters in their research. 
+</p>
 
 The following parts are the explanation of how to use the GUI.
 
@@ -50,8 +52,11 @@ When your file is prepared, you can use MADGUI by uploading your file via the bu
 
 ## Initialisation
 
+<p style="text-align:justify;">
 After uploading your data you have to select what columns are features and which one are the target.
 /!\ Take note that the columns where the standard deviation is 0 are already take out from the selection because it doesn't help the prediction or optimisation.
+</p>
+
 <p align="center">
 <img src="https://user-images.githubusercontent.com/108456770/229695425-a3304dcb-614c-486a-acdb-e9ae968f6c92.png" alt = "selection_features" width="358.5" height="421" margin:auto;">
 </p>
