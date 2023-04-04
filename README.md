@@ -86,10 +86,22 @@ After the prediction, you can use the feature importance graph to see which feat
 
 <img src="https://user-images.githubusercontent.com/108456770/229725662-efce67b2-6240-4902-8438-80e52d7085eb.png" alt = "feature_importance" width="530" height="600">
 
-An important part of the optimization is the limit for features and possibility to apply constraints, the application take both of it in consideration for the optimization.
+## Optimisation
+
+<p style="text-align:justify;">
+An strength of this GUI is the possibilities to define features's limitation and to apply constraints, the application take both of it in consideration for the optimization.
+</p>
+
+<img src="https://user-images.githubusercontent.com/108456770/229737188-2c60cb6b-3075-43aa-92d9-b1432d3039e3.png" alt = "limit_selection" width="530" height="600"><img src="https://user-images.githubusercontent.com/108456770/229737408-8663c8e2-be63-404b-ada3-364c8c791149.png" alt = "constraints" width="550" height="600">
+
+<p style="text-align:justify;">
+After all those limits and constraints you are ready to launch the optimisation. This GUI allow you to optimise one or several targets (up to 3), you can select for each one either to maximise or minimise it and also if you select multiple target you can determine the ratio between them (50-50 by default when two tagets are selected).
+</p>
+
+<img src="https://user-images.githubusercontent.com/108456770/229738442-40b938d3-5e2b-483b-92ea-5a5c8501b077.png" alt = "optimisation" width="550" height="600">
+
 The last part allow users to use prediction model and Bayesian Optimization at the same time to unbias the data for the initialisation of the Bayesian Optimization.
 
-![image](https://user-images.githubusercontent.com/108456770/223050417-fe3c8d5b-636d-4176-bedd-ede96b9ff371.png)
 
 Here is an explanation of the Bayesian Optimization (source: http://krasserm.github.io/2018/03/21/bayesian-optimization/)
 
