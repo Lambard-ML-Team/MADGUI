@@ -77,8 +77,8 @@ def convert_feat_lim(df):
 with st.sidebar:
 	st.image('/app/madgui/MADGUI/madgui_logo.png',use_column_width='auto')
 	# Navigation part in the sidebar
-	choice = option_menu('Navigation', ['Main Page','Prediction','Bayesian','About'],
-		icons = ['house', 'tree','app-indicator','info-circle'],
+	choice = option_menu('Navigation', ['Main Page','Prediction','Bayesian','About',"Contact"],
+		icons = ['house', 'tree','app-indicator','info-circle','postcard'],
 		menu_icon = 'map', default_index=0,
 		styles={
         "container": {"padding": "5!important", "background-color": "#fafafa"},
@@ -1119,6 +1119,15 @@ elif choice == 'Bayesian':
 
 if choice == 'About':
 	
+	
+	
+	def read_markdown_file(markdown_file):
+	    return Path(markdown_file).read_text()
+
+	intro_markdown = read_markdown_file("README.md")
+	st.markdown(intro_markdown, unsafe_allow_html=True)
+
+if choice == 'Contact':
 	st.header("Contact")
 	st.write("If you have any questions, bugs, recommandations, you can contact us by using the form below.")
 	
@@ -1143,9 +1152,3 @@ if choice == 'About':
 
 	local_css("style/email_style.css")
 	
-	def read_markdown_file(markdown_file):
-	    return Path(markdown_file).read_text()
-
-	intro_markdown = read_markdown_file("README.md")
-	st.markdown(intro_markdown, unsafe_allow_html=True)
-
