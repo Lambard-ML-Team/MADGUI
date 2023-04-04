@@ -1118,7 +1118,10 @@ elif choice == 'Bayesian':
 				mime = 'text/csv')
 
 if choice == 'About':
-
+	
+	st.header("Contact")
+	st.write("If you have any questions, bugs, recommandations, you can contact us by using the form below.")
+	
 	contact_form = """
 	<form action="https://formsubmit.co/{}" method="POST">
 	     <input type="hidden" name="_captcha" value="false">
@@ -1145,7 +1148,4 @@ if choice == 'About':
 
 	intro_markdown = read_markdown_file("README.md")
 	st.markdown(intro_markdown, unsafe_allow_html=True)
-	st.header("Contact")
-	st.write("If you have any questions, bugs, recommandations, you can contact us by using the form below.")
-	
 
