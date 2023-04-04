@@ -78,7 +78,7 @@ with st.sidebar:
 	st.image('/app/madgui/MADGUI/madgui_logo.png',use_column_width='auto')
 	# Navigation part in the sidebar
 	choice = option_menu('Navigation', ['Main Page','Prediction','Bayesian','About','Contact'],
-		icons = ['house', 'tree','app-indicator','info-circle','postcard'],
+		icons = ['house', 'tree','app-indicator','info-circle','mailbox'],
 		menu_icon = 'map', default_index=0,
 		styles={
         "container": {"padding": "5!important", "background-color": "#fafafa"},
