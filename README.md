@@ -1,4 +1,4 @@
-<img src="https://user-images.githubusercontent.com/108456770/223624233-e40b55fa-fa50-4b37-a608-31077630311a.png" alt= “madgui_logo” width="200" height="200" margin:auto;">
+<img src="https://user-images.githubusercontent.com/108456770/223624233-e40b55fa-fa50-4b37-a608-31077630311a.png" alt= “madgui_logo” width="200" height="200">
 
 # MADGUI : Material Design Graphical User Interface 
 User-friendly Graphical User Interface (GUI) developed at the National Institute for Materials Science (NIMS, MaDIS) for performing statistical data analysis, machine learning (ML) modelisation, and composition/process optimisation through Bayesian optimisation.
@@ -24,7 +24,7 @@ We have developed MADUI, a Material Design Graphical User Interface that require
 
 The following parts are the explanation of how to use the GUI.
 
-<img src="https://user-images.githubusercontent.com/108456770/223059434-bfa07661-1519-4b48-8a49-3d65c8e5623d.png" alt= “flowchart” width="800" height="450" margin:auto;">
+<img src="https://user-images.githubusercontent.com/108456770/223059434-bfa07661-1519-4b48-8a49-3d65c8e5623d.png" alt= “flowchart” width="800" height="450">
 
 ## Data Preparation
 
@@ -37,11 +37,11 @@ Firstly, to use correctly the GUI you need to have a tabular dataset with some s
 
 Here is an exemple of what it must look like:
 
-<img src="https://user-images.githubusercontent.com/108456770/229692238-a396619f-b0ac-4043-8d04-5316cf55c72b.png" alt= “dataset_exemple” margin:auto;">
+<img src="https://user-images.githubusercontent.com/108456770/229692238-a396619f-b0ac-4043-8d04-5316cf55c72b.png" alt= “dataset_exemple”>
 
 When your file is prepared, you can use MADGUI by uploading your file via the button in the sidebar:
 
-<img src="https://user-images.githubusercontent.com/108456770/229692818-7cbce704-5174-4334-b260-23dd38fcf9d4.png" alt= “sidebar” width="167" height="459.5" margin:auto;">
+<img src="https://user-images.githubusercontent.com/108456770/229692818-7cbce704-5174-4334-b260-23dd38fcf9d4.png" alt= “sidebar” width="167" height="459.5">
 
 ## Initialisation
 
