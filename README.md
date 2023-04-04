@@ -37,7 +37,7 @@ Firstly, to use correctly the GUI you need to have a tabular dataset with some s
 
 Here is an exemple of what it must look like:
 
-![Screenshot 2023-04-04 at 14 07 37](https://user-images.githubusercontent.com/108456770/229692238-a396619f-b0ac-4043-8d04-5316cf55c72b.png)
+<img src="https://user-images.githubusercontent.com/108456770/229692238-a396619f-b0ac-4043-8d04-5316cf55c72b.png" alt= “dataset_exemple”>
 
 When your file is prepared, you can use MADGUI by uploading your file via the button in the sidebar:
 
@@ -48,7 +48,7 @@ When your file is prepared, you can use MADGUI by uploading your file via the bu
 After uploading your data you have to select what columns are features and which one are the target.
 /!\ Take note that the columns where the standard deviation is 0 are already take out from the selection because it doesn't help the prediction or optimisation.
 
-![Screenshot 2023-03-31 at 16 20 35](https://user-images.githubusercontent.com/108456770/229695425-a3304dcb-614c-486a-acdb-e9ae968f6c92.png)
+<img src="https://user-images.githubusercontent.com/108456770/229695425-a3304dcb-614c-486a-acdb-e9ae968f6c92.png" alt = "selection_features" width="358.5" height="421">
 
 The application allow users to analyse their datas (with Pearson's correlation for example)
 We utilize four methods: ElasticNet, RandomForestRegressor, XGBRegressor or HistGradientBoostingRegressor, and two cross-validation methods: LeaveOneOut or K-fold.
