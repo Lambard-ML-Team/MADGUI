@@ -3,9 +3,11 @@
 # MADGUI : Material Design Graphical User Interface 
 User-friendly Graphical User Interface (GUI) developed at the National Institute for Materials Science (NIMS, MaDIS) for performing statistical data analysis, machine learning (ML) modelisation, and composition/process optimisation through Bayesian optimisation.
 
-Can be used directly without any installation with the link below:
+Can be used directly with the link below:
 
 Streamlit app:  https://lambard-ml-team-madgui.streamlit.app/
+
+Code accessible on GitHub:
 
 GitHub page: https://github.com/Lambard-ML-Team/MADGUI
 
@@ -16,6 +18,22 @@ Christophe BAJAN* & Guillaume LAMBARD*
 **National Institute for Materials Science, Tsukuba, Japan*
 
 <img src="https://user-images.githubusercontent.com/108456770/223059434-bfa07661-1519-4b48-8a49-3d65c8e5623d.png" alt= “flowchart” width="1000" height="600">
+
+We have developed MADUI, a Material Design Graphical User Interface that require no programming knowledge and can be applied to a wide range of fields. This GUI is built using Python and various python libraries including Streamlit, scikit-learn, seaborn, xgboost and more importantly GpyOpt for the Bayesian Optimisation (BO) part. BO is a probability model that find the minimum/maximum of a black-box function (objective function) using a prior function based only on the data collected and performing multiple iterations. The goal of MADGUI is to help researchers to reach the optimum parameters in their research. 
+
+The following parts are the explanation of how to use the GUI.
+
+Firstly, to use correctly the GUI you need to have a tabular dataset with some specifications. There is some rules to follow:
+* Only numerical values
+* No empty space
+* Format csv or xlsx
+* First line must be columns names (features and targets)
+* Dataset must be in the first sheet of your file
+
+Here is an exemple of what it must look like:
+
+![Screenshot 2023-04-04 at 14 07 37](https://user-images.githubusercontent.com/108456770/229692238-a396619f-b0ac-4043-8d04-5316cf55c72b.png)
+
 
 The application allow users to analyse their datas (with Pearson's correlation for example)
 We utilize four methods: ElasticNet, RandomForestRegressor, XGBRegressor or HistGradientBoostingRegressor, and two cross-validation methods: LeaveOneOut or K-fold.
