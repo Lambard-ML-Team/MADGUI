@@ -117,7 +117,9 @@ The result of the optimisation will be display has a dataframe and is downloadab
 
 The last part allow users to use prediction model and Bayesian Optimization at the same time to unbias the data for the initialisation of the Bayesian Optimization.
 
+<p align="center">
 <img src="https://user-images.githubusercontent.com/108456770/229746786-f4bfa5e8-1799-409a-9fc5-fbf038fd9620.png" alt = "optimisation_predi" width="550" height="600">
+</p>
 
 ## Bayesian
 
