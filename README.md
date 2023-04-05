@@ -83,9 +83,13 @@ We utilize three machine learning methods: ElasticNet, RandomForestRegressor and
 <img src="https://user-images.githubusercontent.com/108456770/229722250-cd608077-eb25-4594-b4ed-aa1052458d46.png" alt = "prediction_param" width="600" height="530"><img src="https://user-images.githubusercontent.com/108456770/229723072-d9ba65fb-a426-4cda-9ecb-c3456e9b59f7.png" alt = "prediction" width="600" height="600">
 </p>
 
+<p style="text-align:justify;">
 After the prediction, you can use the feature importance graph to see which features have the highest score for the prediction model. If the model is accurate, you can then reduce the number of features needed by using only those that have scored high.
+</p>
 
+<p align="center">
 <img src="https://user-images.githubusercontent.com/108456770/229725662-efce67b2-6240-4902-8438-80e52d7085eb.png" alt = "feature_importance" width="530" height="600">
+</p>
 
 ## Optimisation
 
@@ -93,13 +97,17 @@ After the prediction, you can use the feature importance graph to see which feat
 An strength of this GUI is the possibilities to define features's limitation and to apply constraints, the application take both of it in consideration for the optimization.
 </p>
 
+<p align="center">
 <img src="https://user-images.githubusercontent.com/108456770/229737188-2c60cb6b-3075-43aa-92d9-b1432d3039e3.png" alt = "limit_selection" width="530" height="600"><img src="https://user-images.githubusercontent.com/108456770/229737408-8663c8e2-be63-404b-ada3-364c8c791149.png" alt = "constraints" width="550" height="600">
+</p>
 
 <p style="text-align:justify;">
 After all those limits and constraints you are ready to launch the optimisation. This GUI allow you to optimise one or several targets (up to 3), you can select for each one either to maximise or minimise it and also if you select multiple target you can determine the ratio between them (50-50 by default when two tagets are selected).
 </p>
 
+<p align="center">
 <img src="https://user-images.githubusercontent.com/108456770/229738442-40b938d3-5e2b-483b-92ea-5a5c8501b077.png" alt = "optimisation" width="550" height="600">
+</p>
 
 The result of the optimisation will be display has a dataframe and is downloadable as a csv file.
 
