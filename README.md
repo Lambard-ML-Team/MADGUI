@@ -79,7 +79,9 @@ The GUI also allow users to analyse their datas with Pearson's correlation, the 
 
 We utilize three machine learning methods: ElasticNet, RandomForestRegressor and XGBRegressor, with two kind of cross-validation: LeaveOneOut or K-fold for the prediction.
 
+<p align="center">
 <img src="https://user-images.githubusercontent.com/108456770/229722250-cd608077-eb25-4594-b4ed-aa1052458d46.png" alt = "prediction_param" width="600" height="530"><img src="https://user-images.githubusercontent.com/108456770/229723072-d9ba65fb-a426-4cda-9ecb-c3456e9b59f7.png" alt = "prediction" width="600" height="600">
+</p>
 
 After the prediction, you can use the feature importance graph to see which features have the highest score for the prediction model. If the model is accurate, you can then reduce the number of features needed by using only those that have scored high.
 
