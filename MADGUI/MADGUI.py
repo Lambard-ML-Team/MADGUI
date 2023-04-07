@@ -106,9 +106,9 @@ if choice == 'Main Page':
 	with header: 
 		# This section is to explain briefly what the point of the app
 
-		st.title('MADGUI - Data Analyzis using prediction and Bayesian Optimization')
-		st.write('Welcome! The objective of this project is to help you to analyze your data, to find the best \n'
-			'next sample to reach your objective using Bayesian Optimization.\n'
+		st.title('MADGUI - Data Analysis using prediction and Bayesian Optimisation')
+		st.write('Welcome! The objective of this project is to help you to analyse your data, to find the best \n'
+			'next sample to reach your objective using Bayesian Optimisation.\n'
 			'You will be asked to complete different parts of this program. You must start by completing the Main Page where you are currently located. Then you will be able to do either the prediction or the Bayesian optimization. \n'
 			"Take note that if you change anything after submitting your selection, you must click 'Submit' again.")
 		
@@ -153,7 +153,7 @@ if choice == 'Main Page':
 		# columns of his data are feature and which are target.
 
 		st.header('2 - Selection of your features and targets for the project')
-		st.write('On this section of the program, you must select which columns of your dataset are the features you want to analyze and which columns are the targets that you want to predict or improve.')
+		st.write('On this section of the program, you must select which columns of your dataset are the features you want to analyse and which columns are the targets that you want to predict or improve.')
 		
 		### Selection of the feature
 		st.write('Columns with a standard deviation of 0 are already deselected, as well as columns that contain text. This is done automatically to eliminate columns that do not provide useful information for analysis and prediction.')
@@ -199,7 +199,7 @@ if choice == 'Main Page':
 			st.session_state['data_file_selected'] = data_file_selected
 			st.dataframe(data_file_selected)
 
-			# Quick analyze of the data selected using pd.describe
+			# Quick analyse of the data selected using pd.describe
 			st.header('3 - Quick analysis')
 			st.write('Here you can see some information about your data :')
 			data_describe = st.session_state['data_file_selected'].describe(include = 'all')
@@ -307,7 +307,7 @@ elif choice == 'Prediction':
 		# This function is the function to use the predictor (ElasticNet, RandomForest, XGBRegressor), it can certainly be move outside of this 
 		# file and then be called here.
 
-		def analyze_function(method, data, target, crossval, lim_feature, k_num=3,random_state = 0, n_estimators = 100):
+		def analyse_function(method, data, target, crossval, lim_feature, k_num=3,random_state = 0, n_estimators = 100):
 
 			regressors = {'ElasticNet': ElasticNet(random_state=0),
               'RandomForestRegressor': RandomForestRegressor(n_estimators=n_estimators, random_state=0),
@@ -425,7 +425,7 @@ elif choice == 'Prediction':
 			st.session_state['crossval'] = crossval
 			st.session_state['k_num'] = k_num
 
-			pred_, fig, fig2, test_mae_, test_rmse_, est_ = analyze_function(method = method, 
+			pred_, fig, fig2, test_mae_, test_rmse_, est_ = analyse_function(method = method, 
 										data = st.session_state['data_selected'], 
 										target = target, 
 										crossval=crossval,
@@ -530,7 +530,7 @@ elif choice == 'Prediction':
 			"Be careful that it can take a lot of time (severals minute) depending on the number of data that you have.")
 
 
-		def analyze_function_pred(method, data, target, crossval, lim_feature, k_num=3,random_state = 0, n_estimators = 100):
+		def analyse_function_pred(method, data, target, crossval, lim_feature, k_num=3,random_state = 0, n_estimators = 100):
 	    
 		    if method == 'ElasticNet':
 		        regressor = ElasticNet(random_state = 0)
@@ -565,42 +565,42 @@ elif choice == 'Prediction':
 		methods = ['ElasticNet', 'RandomForestRegressor', 'XGBRegressor']
 		crossvalidation = ['LeaveOneOut','K-Fold']
 		if best_pred:
-			analyze_pred=[]
+			analyse_pred=[]
 			indice=[]
 			for i in methods:
 				for j in crossvalidation:
 					if j=='LeaveOneOut':
 						k=0
-						pred_ = analyze_function_pred(method = i, 
+						pred_ = analyse_function_pred(method = i, 
 													data = st.session_state['data_selected'], 
 													target = target, 
 													crossval=j,
 													k_num=0,
 													lim_feature = lim_feature)
 						row=np.array([np.sum(np.abs(st.session_state['data_file_selected'].iloc[:,feature_columns]-pred_))])
-						analyze_pred.append(row)
+						analyse_pred.append(row)
 						indice.append([i,j,k])
 					else:
 						for k in range(2,len(st.session_state['data_selected'].iloc[:,0])-1):
-							pred_ = analyze_function_pred(method = i, 
+							pred_ = analyse_function_pred(method = i, 
 													data = st.session_state['data_selected'], 
 													target = target, 
 													crossval=j,
 													k_num=k,
 													lim_feature = lim_feature)
 							row=np.array([np.sum(np.abs(st.session_state['data_file_selected'].iloc[:,feature_columns]-pred_))])
-							analyze_pred.append(row)
+							analyse_pred.append(row)
 							indice.append([i,j,k])
 
-			st.session_state['analyze_pred'] = np.array(analyze_pred)
+			st.session_state['analyse_pred'] = np.array(analyse_pred)
 			st.session_state["indice"] = indice
 
-		if 'analyze_pred' in st.session_state:		
-			a = np.argmin(st.session_state['analyze_pred'][:].astype(np.float))
+		if 'analyse_pred' in st.session_state:		
+			a = np.argmin(st.session_state['analyse_pred'][:].astype(np.float))
 			st.dataframe(st.session_state["indice"][a])
 
 
-			_,fig,_,test_mae_,test_rmse_,_= analyze_function(method = st.session_state["indice"][a][0], 
+			_,fig,_,test_mae_,test_rmse_,_= analyse_function(method = st.session_state["indice"][a][0], 
 											data = st.session_state['data_selected'], 
 											target = target, 
 											crossval= st.session_state["indice"][a][1],
@@ -621,7 +621,7 @@ elif choice == 'Bayesian':
 
 	############
 	### On this page the user must choose the limitation and step of all his feature 
-	### then the program use bayesian optimization to give him as much new sample as the user choose with the slider
+	### then the program use bayesian optimisation to give him as much new sample as the user choose with the slider
 	############
 
 	if 'lim_feature' not in st.session_state:
@@ -640,7 +640,7 @@ elif choice == 'Bayesian':
 	with limite:
 
 		# In this part we need to ask the user to complete a csv file with the limits of his features 
-		# as well as his constraints, to be able to perform the Bayesian Optimization
+		# as well as his constraints, to be able to perform the Bayesian Optimisation
 
 		st.title('Limit Selection')
 		st.write('In this part, you will have to complete the dataframe below with the min, \n'
@@ -676,7 +676,7 @@ elif choice == 'Bayesian':
 			file_name = 'limite_feature.csv',
 			mime = 'text/csv')
 		
-		st.header('Bayesian Optimization')
+		st.header('Bayesian Optimisation')
 		st.subheader('Limits and constraints')
 		
 		column_lim1 , column_lim2 = st.columns(2)
@@ -861,16 +861,16 @@ elif choice == 'Bayesian':
 				file_name = "constraint.csv",
 				mime = 'text/csv')
 
-		# Bayesian Optimization
+		# Bayesian Optimisation
 
-		st.subheader('Optimization')
+		st.subheader('Optimisation')
 
-		# Ask the user how many target does he want to optimize
+		# Ask the user how many target does he want to optimise
 		if 'num_target' not in st.session_state:
-			num_target = st.number_input('How many target do you want to optimize? (max 3)',min_value=1, max_value=len(st.session_state['target_selected']),step=1)
+			num_target = st.number_input('How many target do you want to optimise? (max 3)',min_value=1, max_value=len(st.session_state['target_selected']),step=1)
 			st.session_state['num_target'] = int(num_target)
 		else:
-			num_target = st.number_input('How many target do you want to optimize? (max 3)',min_value=1, max_value=len(st.session_state['target_selected']),step=1, value = int(st.session_state['num_target']))
+			num_target = st.number_input('How many target do you want to optimise? (max 3)',min_value=1, max_value=len(st.session_state['target_selected']),step=1, value = int(st.session_state['num_target']))
 			st.session_state['num_target'] = num_target
 		
 		# Open as many selectbox as the user choose above
@@ -882,13 +882,13 @@ elif choice == 'Bayesian':
 	
 		if "Check target" not in st.session_state:
 			for i in range(int(num_target)):
-				target[i] = st.selectbox('Select which target you want to optimize, be careful to not choose the same target twice', target_selected,key=(i+1))
+				target[i] = st.selectbox('Select which target you want to optimise, be careful to not choose the same target twice', target_selected,key=(i+1))
 				st.session_state['Target_%s'%i]=np.where(target==target[i])[0][0]
 				opti[i] = st.selectbox('Select if you want to maximize/minimize this target ', min_max, key=(i+5))
 				st.session_state['Opti_%s'%i]=np.where(min_max==opti[i])[0][0]
 		else:
 			for i in range(int(num_target)):
-				target[i] = st.selectbox('Select which target you want to optimize, be careful to not choose the same target twice', target_selected,key=(i+1), index=int(st.session_state['Target_%s'%i]))
+				target[i] = st.selectbox('Select which target you want to optimise, be careful to not choose the same target twice', target_selected,key=(i+1), index=int(st.session_state['Target_%s'%i]))
 				st.session_state['Target_%s'%i]=np.where(target==target[i])[0][0]
 				opti[i] = st.selectbox('Select if you want to maximize/minimize this target ', min_max, key=(i+5), index=int(st.session_state['Opti_%s'%i]))
 				st.session_state['Opti_%s'%i]=int(np.where(min_max==opti[i])[0][0])		
@@ -920,7 +920,7 @@ elif choice == 'Bayesian':
 					st.warning('The sum of the two slider must be equal to 100')
 				Y_init=(Y_init[0]**(a/100)*(Y_init[1]**(b/100))*(Y_init[2]**(c/100)))
 
-		# Allow the user to choose how many optimize sample does he want
+		# Allow the user to choose how many optimise sample does he want
 		if 'iter_count' not in st.session_state:
 			iter_count = st.slider('Select the number of sample that you want', 1, 20, 10, 1)
 			st.session_state['iter_count'] = iter_count
@@ -941,10 +941,10 @@ elif choice == 'Bayesian':
 # 		st.bokeh_chart(fig_)	
 
 		###################
-		#### Code for Bayesian Optimization
+		#### Code for Bayesian Optimisation
 		###################
 
-		execute = st.button('Execute the Bayesian Optimization')
+		execute = st.button('Execute the Bayesian Optimisation')
 		X_init = data_file_feature.loc[:,:].values
 
 		if execute:
@@ -973,18 +973,18 @@ elif choice == 'Bayesian':
 				std_values = np.vstack((std_values,std))
 
 			proposed_list_next_opti = pd.DataFrame(pending_X, columns = data_file_feature.columns)
-			st.write('The result of the bayesian optimization are :')
+			st.write('The result of the bayesian optimisation are :')
 			st.session_state['proposed_list']= proposed_list_next_opti
 
 		if 'proposed_list' in st.session_state: 
-			# Display the next sample find with the Bayesian Optimization
+			# Display the next sample find with the Bayesian Optimisation
 			
 			st.dataframe(st.session_state['proposed_list'])
 			proposed_list_csv = convert_feat_lim(st.session_state['proposed_list'])
 
-			# Downloading the result of the Bayesian Optimization
+			# Downloading the result of the Bayesian Optimisation
 
-			st.write('Click below to download the CSV with the proposed data for optimization.')
+			st.write('Click below to download the CSV with the proposed data for optimisation.')
 			st.download_button(
 				label = 'Click here',
 				data = proposed_list_csv,
@@ -993,12 +993,12 @@ elif choice == 'Bayesian':
 
 ########## Bayesian with prediction model
 
-		st.subheader('Bayesian Optimization using the prediction')
+		st.subheader('Bayesian Optimisation using the prediction')
 
-		st.write("In this part, the bayesian optimization will initialise not with your dataset but using values from the prediction model obtained in the other page. The purpose of this operation is to unbiase the dataset. It is recommanded to use this part only if you obtained a good prediction model in the second page, otherwise do not use this part.")
-		st.write("Now let's try to use the prediction you did in the previous page with the bayesian optimization.\n\n"
+		st.write("In this part, the bayesian optimisation will initialise not with your dataset but using values from the prediction model obtained in the other page. The purpose of this operation is to unbiase the dataset. It is recommanded to use this part only if you obtained a good prediction model in the second page, otherwise do not use this part.")
+		st.write("Now let's try to use the prediction you did in the previous page with the bayesian optimisation.\n\n"
 			"Choose the parameters that have showm better performance in the Prediction Page.")
-		st.write("It works only if you want to optimize one target") 
+		st.write("It works only if you want to optimise one target") 
 
 		methods = ['ElasticNet', 'RandomForestRegressor', 'XGBRegressor']
 
@@ -1066,9 +1066,9 @@ elif choice == 'Bayesian':
 
 			return Popt_predict_mean
 
-		execute2 = st.button('Execute the Bayesian Optimization with Prediction')
+		execute2 = st.button('Execute the Bayesian Optimisation with Prediction')
 
-		# Code for Bayesian Optimization
+		# Code for Bayesian Optimisation
 
 		if execute2:
 			
@@ -1098,19 +1098,19 @@ elif choice == 'Bayesian':
 				return next_samples
 			next_samples = function()
 			
-			st.write('The result of the bayesian optimization using the prediction are :')
+			st.write('The result of the bayesian optimisation using the prediction are :')
 			proposed_list_next_opti_with_predi = pd.DataFrame(np.array(next_samples.iloc[:,2:]), columns = data_file_feature.columns)
 			st.session_state['proposed_list_next_opti_with_predi']= proposed_list_next_opti_with_predi
 
-		if 'proposed_list_next_opti_with_predi' in st.session_state: # Display the next sample find with the Bayesian Optimization
+		if 'proposed_list_next_opti_with_predi' in st.session_state: # Display the next sample find with the Bayesian Optimisation
 
 			st.dataframe(st.session_state['proposed_list_next_opti_with_predi'])
 
 			proposed_list_with_predi_csv = convert_feat_lim(st.session_state['proposed_list_next_opti_with_predi'])
 
-			# Downloading the result of the Bayesian Optimization
+			# Downloading the result of the Bayesian Optimisation
 
-			st.write('Click below to download the CSV with the proposed data for optimization.')
+			st.write('Click below to download the CSV with the proposed data for optimisation.')
 			st.download_button(
 				label = 'Click here',
 				data = proposed_list_with_predi_csv,
