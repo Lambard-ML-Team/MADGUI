@@ -1,7 +1,3 @@
-/!\ Some higher version of these librairies cause problem to run MADGUI.
-
-To use the local version of MADGUI you need :
-
 bokeh==2.4.3
 glob2==0.7
 GPy==1.10.0
