@@ -16,7 +16,7 @@ Code accessible on GitHub:
 
 GitHub page: https://github.com/Lambard-ML-Team/MADGUI
                               
-If you are looking for the local version click here [^local_version]
+If you are looking for the local version click here [local_version](#local-version-section)
 
 ### Developers:
 
@@ -129,17 +129,17 @@ Here is an explanation of the Bayesian Optimization (source: http://krasserm.git
 
 <img src="https://user-images.githubusercontent.com/108456770/215394614-fa624138-568c-4951-b6e7-a4e9c3e005e0.png" alt="Bayesian_explication">
 
-[^local_version]:
-  ## Local version
 
-  If you have difficulty to launch with the web version you can download the folder on GitHub to launch it in local version. It will run much faster.
-  Go to the GitHub page ( https://github.com/Lambard-ML-Team/MADGUI ) then "Code" -> Download ZIP.
-  Once it is down, you have to install all the requiered python's package needed by the GUI.
-  To do that, just write: pip install -r requierements.txt
+  ## Local version {#local-version-section}
 
-  Then you are ready to go. Just use the cd command to go in the right folder for example if you put the folder in you Desktop just write: 
+If you have difficulty to launch with the web version you can download the folder on GitHub to launch it in local version. It will run much faster.
+Go to the GitHub page ( https://github.com/Lambard-ML-Team/MADGUI ) then "Code" -> Download ZIP.
+Once it is down, you have to install all the requiered python's package needed by the GUI.
+To do that, just write: pip install -r requierements.txt
 
-  cd Desktop/MADGUI      -> To enter the folder
+Then you are ready to go. Just use the cd command to go in the right folder for example if you put the folder in you Desktop just write: 
 
-  streamlit run MADGUI_local       -> To launch the app
+cd Desktop/MADGUI      -> To enter the folder
+
+streamlit run MADGUI_local       -> To launch the app
 
