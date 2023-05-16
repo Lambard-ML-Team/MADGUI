@@ -16,7 +16,7 @@ Code accessible on GitHub:
 
 GitHub page: https://github.com/Lambard-ML-Team/MADGUI
                               
-If you are looking for the local version click here [local_version](#local-version-section)
+If you are looking for the local version click here [local version]{#local-version-section}
 
 ### Developers:
 
