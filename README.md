@@ -136,7 +136,7 @@ To do that, just write: pip install -r requierements.txt
 
 Then you are ready to go. Just use the cd command to go in the right folder for example if you put the folder in you Desktop just write: 
 
-cd Desktop/MADGUI.  -> To enter the folder
+cd Desktop/MADGUI      -> To enter the folder
 
 streamlit run MADGUI_local       -> To launch the app
 
