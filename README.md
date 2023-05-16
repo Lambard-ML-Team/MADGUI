@@ -130,7 +130,7 @@ Here is an explanation of the Bayesian Optimization (source: http://krasserm.git
 <img src="https://user-images.githubusercontent.com/108456770/215394614-fa624138-568c-4951-b6e7-a4e9c3e005e0.png" alt="Bayesian_explication">
 
 
-  ## Local version {#local-version-section}
+### Local version {#local-version-section}
 
 If you have difficulty to launch with the web version you can download the folder on GitHub to launch it in local version. It will run much faster.
 Go to the GitHub page ( https://github.com/Lambard-ML-Team/MADGUI ) then "Code" -> Download ZIP.
