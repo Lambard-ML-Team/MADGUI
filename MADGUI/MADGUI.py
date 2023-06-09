@@ -92,7 +92,7 @@ with st.sidebar:
 	# Reset button part
 	reset = st.sidebar.button('Reset all')
 	if reset:
-		st.session_state = {}
+		st.session_state.clear()
 		uploaded_file = {}
 	
 
