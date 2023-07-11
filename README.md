@@ -45,6 +45,14 @@ Firstly, to use correctly the GUI you need to have a tabular dataset with some s
 * First line must be columns names (features and targets)
 * Dataset must be in the first sheet of your file
 
+The dataset contains 12 columns, 8 were created by the Scikit-learn’s function (1 is just the indentation of samples, 4 are informative’s features (Feature_1 to Feature_4) and 3 targets (Target_1 to Target_3)), and we built 4 columns for the demonstration as follow:
+-	Feature_build1 to display the positive linear correlation: Feature_build1 = Feature_1 + 2
+-	Feature_build2 to display the negative linear correlation: Feature_build2 = - Feature_2 + 2
+-	Feature_build3 to display the constraint functionality: Feature_build3 = 2 - (Feature_3 + Feature_4)
+-	Feature_build4 to display the categorical values, so it is randomly composed of values 1,3.4,5.6,13, which are the values given in the example in the GUI.
+![image](https://github.com/Lambard-ML-Team/MADGUI/assets/108456770/31603b3d-28e8-4e2e-9d3c-2ab3255bd433)
+
+
 Here is an exemple of what it must look like:
 
 <img src="https://user-images.githubusercontent.com/108456770/229692238-a396619f-b0ac-4043-8d04-5316cf55c72b.png" alt= “dataset_exemple”>
