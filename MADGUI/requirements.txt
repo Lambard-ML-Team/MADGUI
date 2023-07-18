@@ -1,3 +1,4 @@
+pip==23.2
 altair<5
 bokeh==2.4.3
 glob2==0.7
