@@ -1,15 +1,21 @@
 This is a local version of MADGUI, you can use it if the online version is too slow or if you don't want to upload your data on the online server of streamlit.
 
-If you have question or bug report you can use the GitHub or the online MADGUI contact page to contct us.
+If you have question or bug report you can use the GitHub or the online MADGUI contact page to contact us.
 
+If you want to use the local version, download the zip by clicking "Code" -> "Download ZIP"
 
-To launch MADGUI you have to open your terminal then go to the repertory where you save the MADGUI.py file:
-For exemple if you save the file on your Desktop the line you have to write is :
+To launch MADGUI you have to open your terminal then go to the repertory where you save the MADGUI.py file.
 
-cd Desktop/MADGUI_local_version   on MAC
-cd Desktop\MADGUI_local_version   on Windows
+For exemple, if you save the folder on your Desktop, the line you have to write is :
 
-Then you have to launch MADGUI by writing :
+cd Desktop/MADGUI_local-version   on MAC
+cd Desktop\MADGUI_local-version   on Windows
+
+Tehn for the first use you have to install the requirements packages neccessary for the use of MADGUI, it can take some times:
+
+pip install -r requirements.txt
+
+Then you can use MADGUI every time you want it by writing :
 
 streamlit run MADGUI.py
 
