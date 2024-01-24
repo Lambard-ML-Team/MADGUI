@@ -2,10 +2,10 @@
   <img src="https://user-images.githubusercontent.com/108456770/223624233-e40b55fa-fa50-4b37-a608-31077630311a.png" alt= “madgui_logo” width="200" height="200" margin:auto;">
 </p>
 
-# MADGUI : Material Design Graphical User Interface 
+# MADGUI : Multi-Application Design Graphical User Interface 
 
 <p style="text-align:justify;">
-User-friendly Graphical User Interface (GUI) developed at the National Institute for Materials Science (NIMS, MaDIS) for performing statistical data analysis, machine learning (ML) modelisation, and composition/process optimisation through Bayesian optimisation.
+User-friendly Graphical User Interface (GUI) developed at the National Institute for Materials Science (NIMS) for performing statistical data analysis, machine learning (ML) modelisation, and composition/process optimisation through Bayesian optimisation.
 </p>
 
 Can be used directly with the link below:
@@ -28,7 +28,7 @@ Christophe BAJAN* & Guillaume LAMBARD*
 ## Introduction
 
 <p style="text-align:justify;">
-We have developed MADGUI, a MAterial Design Graphical User Interface that require no programming knowledge and can be applied to a wide range of fields. This GUI is built using Python and various python libraries including Streamlit, scikit-learn, seaborn, xgboost and more importantly GpyOpt for the Bayesian Optimisation (BO) part. BO is a probability model that find the minimum/maximum of a black-box function (objective function) using a prior function based only on the data collected and performing multiple iterations. The goal of MADGUI is to help researchers to reach the optimum parameters in their research. 
+We have developed MADGUI, a Multi-Application Design Graphical User Interface that require no programming knowledge and can be applied to a wide range of fields. This GUI is built using Python and various python libraries including Streamlit, scikit-learn, seaborn, xgboost and more importantly GpyOpt for the Bayesian Optimisation (BO) part. BO is a probability model that find the minimum/maximum of a black-box function (objective function) using a prior function based only on the data collected and performing multiple iterations. The goal of MADGUI is to help researchers to reach the optimum parameters in their research. 
 </p>
 
 The following parts are the explanation of how to use the GUI.
