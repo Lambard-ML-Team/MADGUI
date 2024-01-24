@@ -1,4 +1,4 @@
-This is a local version of MADGUI, you can use it if the online version is too slow or if you don't want to upload your data on the online server of streamlit.
+This is a local version of MADGUI, Multi-Application Design Graphical user Interface, you can use it if the online version is too slow or if you don't want to upload your data on the online server of streamlit.
 
 If you have question or bug report you can use the GitHub or the online MADGUI contact page to contact us.
 
