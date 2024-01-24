@@ -104,8 +104,8 @@ if choice == 'Main Page':
 	with header: 
 		# This section is to explain briefly what the point of the app
 
-		st.title('MADGUI - Data Analysis using prediction and Bayesian Optimisation')
-		st.write('Welcome! The objective of this project is to help you to analyse your data, to find the best \n'
+		st.title('MADGUI - Multi-Application Design GUI')
+		st.write('Welcome! The objective of this project is to help you for data analysis, prediction model and Bayesian Optimisation, to find the best \n'
 			'next sample to reach your objective using Bayesian Optimisation.\n'
 			'You will be asked to complete different parts of this program. You must start by completing the Main Page where you are currently located. Then you will be able to do either the prediction or the Bayesian optimization. \n'
 			"Take note that if you change anything after submitting your selection, you must click 'Submit' again.")
