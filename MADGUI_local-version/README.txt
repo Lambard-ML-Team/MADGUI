@@ -11,7 +11,9 @@ For exemple, if you save the folder on your Desktop, the line you have to write 
 cd Desktop/MADGUI_local-version   on MAC
 cd Desktop\MADGUI_local-version   on Windows
 
-Tehn for the first use you have to install the requirements packages neccessary for the use of MADGUI, it can take some times:
+Requieres Python >= 3.8 and <3.11 (tested succesfully on python 3.8.10 and 3.9.6)
+
+Then for the first use you have to install the requirements packages neccessary for the use of MADGUI, it can take some times:
 
 pip install -r requirements.txt
 
