@@ -18,7 +18,7 @@ GitHub page: https://github.com/Lambard-ML-Team/MADGUI
                               
 If you are looking for the local version:
 <p>
-  executable available on https://madgui.odoo.com/ for both Windows and Mac./n
+  executable available on https://madgui.odoo.com/ for both Windows and Mac./n/
   here <a href="#local-version-section">local_version section</a> for the local version using the code on GitHub.
 </p>
 executable available on https://madgui.odoo.com/ for both Windows and Mac.
