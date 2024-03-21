@@ -10,17 +10,17 @@ User-friendly Graphical User Interface (GUI) developed at the National Institute
 
 Can be used directly with the link below:
 
+If you are looking for the local version:
+
+ - Executable available on https://madgui.odoo.com/ for both Windows and Mac.
+
+ - Here <a href="#local-version-section">local_version section</a> for the local version using the code on GitHub.
+
 Streamlit app:  https://lambard-ml-team-madgui.streamlit.app/
 
 Code accessible on GitHub:
 
 GitHub page: https://github.com/Lambard-ML-Team/MADGUI
-                              
-If you are looking for the local version:
-
-executable available on https://madgui.odoo.com/ for both Windows and Mac.
-
-here <a href="#local-version-section">local_version section</a> for the local version using the code on GitHub.
 
 ### Developers:
 
