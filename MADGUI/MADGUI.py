@@ -21,6 +21,9 @@ from sklearn.metrics import mean_squared_error, mean_absolute_error, make_scorer
 from sklearn.preprocessing import StandardScaler
 from sklearn.pipeline import make_pipeline
 
+from sklearn.inspection import partial_dependence
+from sklearn.inspection import PartialDependenceDisplay
+
 from xgboost import XGBRegressor
 
 import GPyOpt as gpopt
