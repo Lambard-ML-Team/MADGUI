@@ -464,9 +464,9 @@ elif choice == 'Prediction':
 				axs[ifeat].plot(p_dep_values[ifeat], p_dep_list_mean[ifeat], linestyle='-', linewidth=1, color = 'k', label='Mean')
 				axs[ifeat].fill_between(p_dep_values[ifeat], p_dep_list_min[ifeat], p_dep_list_max[ifeat], linestyle = 'None', linewidth = 0, color = 'k', alpha = 0.25, label='Min-Max')
 				axs[ifeat].plot(p_dep_values[ifeat], p_dep_list_median[ifeat], linestyle='--', linewidth=1, color = 'k', alpha = 0.75, label='Median')
-				axs[ifeat].set_xlabel(proc_param_list[ifeat], fontdict={'family' : 'Arial', 'weight' : 'medium', 'size'   : 11, 'style'  : 'normal'})
+				axs[ifeat].set_xlabel(proc_param_list[ifeat], fontdict={'weight' : 'medium', 'size'   : 11, 'style'  : 'normal'})
 				if ifeat in list2:
-					axs[ifeat].set_ylabel(target_name, fontdict={'family' : 'Arial', 'weight' : 'medium', 'size'   : 11, 'style'  : 'normal'})
+					axs[ifeat].set_ylabel(target_name, fontdict={'weight' : 'medium', 'size'   : 11, 'style'  : 'normal'})
 				axs[ifeat].tick_params(axis='both', which='major', labelsize=10)
 				axs[0].legend(loc='upper left', frameon=False)
 			
