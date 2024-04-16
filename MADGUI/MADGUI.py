@@ -309,7 +309,7 @@ elif choice == 'Prediction':
 		# This function is the function to use the predictor (ElasticNet, RandomForest, XGBRegressor), it can certainly be move outside of this 
 		# file and then be called here.
 
-		def analyse_function(method, data, target, crossval, lim_feature, k_num=3,random_state = 0, n_estimators = 100):
+		def analyse_function(method, data, target, crossval, lim_feature, k_num,random_state = 0, n_estimators = 100):
 
 			regressors = {'ElasticNet': ElasticNet(random_state=0),
               'RandomForestRegressor': RandomForestRegressor(n_estimators=n_estimators, random_state=0),
@@ -482,7 +482,7 @@ elif choice == 'Prediction':
 			target = st.selectbox('Select which target you want to predict',st.session_state['target_selected'])
 			method = st.selectbox('Select which method of prediction you want to use',methods)
 			crossval = st.selectbox('Select which method of cross validation you want to use',crossval_list)
-			k_num = st.number_input('Choose how many subsets do you want to use, it has an impact only if you selected K-fold',min_value=2,max_value=len(st.session_state['data_file_selected'].iloc[:,0])-1,value=3)
+			k_num = st.number_input('Choose how many subsets do you want to use, it has an impact only if you selected K-fold',min_value=2,max_value=20,value=3)
 
 			predict = st.form_submit_button('Submit')	
 
@@ -605,7 +605,7 @@ elif choice == 'Prediction':
 			"Be careful that it can take a lot of time (severals minute) depending on the number of data that you have.")
 
 
-		def analyse_function_pred(method, data, target, crossval, lim_feature, k_num=3,random_state = 0, n_estimators = 100):
+		def analyse_function_pred(method, data, target, crossval, lim_feature, k_num,random_state = 0, n_estimators = 100):
 	    
 		    if method == 'ElasticNet':
 		        regressor = ElasticNet(random_state = 0)
@@ -1088,7 +1088,7 @@ elif choice == 'Bayesian':
 
 			crossval = st.selectbox('Select which method of cross validation you want to use',['LeaveOneOut','K-Fold'])
 			
-			k_num = st.number_input('Choose how many subsets do you want to use, it has an impact only if you selected K-fold',min_value=2,max_value=len(st.session_state['data_file_selected'].iloc[:,0])-1,value=3)
+			k_num = st.number_input('Choose how many subsets do you want to use, it has an impact only if you selected K-fold',min_value=2,max_value=20,value=3)
 
 			predict = st.form_submit_button('Submit your selection')	
 
