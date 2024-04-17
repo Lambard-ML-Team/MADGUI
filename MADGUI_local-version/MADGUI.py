@@ -20,6 +20,9 @@ from sklearn.metrics import mean_squared_error, mean_absolute_error, make_scorer
 from sklearn.preprocessing import StandardScaler
 from sklearn.pipeline import make_pipeline
 
+from sklearn.inspection import partial_dependence
+from sklearn.inspection import PartialDependenceDisplay
+
 from xgboost import XGBRegressor
 
 import GPyOpt as gpopt
@@ -29,6 +32,7 @@ import matplotlib as mpl
 from matplotlib import rcParams
 from matplotlib import font_manager as fm
 
+import matplotlib.gridspec as gridspec
 
 import os
 import io
@@ -308,7 +312,7 @@ elif choice == 'Prediction':
 		# This function is the function to use the predictor (ElasticNet, RandomForest, XGBRegressor), it can certainly be move outside of this 
 		# file and then be called here.
 
-		def analyse_function(method, data, target, crossval, lim_feature, k_num=3,random_state = 0, n_estimators = 100):
+		def analyse_function(method, data, target, crossval, lim_feature, k_num,random_state = 0, n_estimators = 100):
 
 			regressors = {'ElasticNet': ElasticNet(random_state=0),
               'RandomForestRegressor': RandomForestRegressor(n_estimators=n_estimators, random_state=0),
@@ -405,6 +409,74 @@ elif choice == 'Prediction':
 
 			return pred_, fig, fig2, test_mae_, test_rmse_, est_
 
+		def partial_dependence(df_param, estimator, target_name,scale=True):
+		    # new_file_param = dataframe with all samples but only features columns, no target
+		    # estimator = estimator from prediction model
+		    # target = name of the target (str)
+		    # scale = all the graph as the same y-axis range, it is True by default to be able to recognise easier which parameter has the most impact
+			proc_param_list = df_param.columns
+
+			p_dep_values = []
+			p_dep_list_min = []
+			p_dep_list_max = []
+			p_dep_list_mean = []
+			p_dep_list_median = []
+
+			n_features = df_param.shape[1]
+			for ifeat in range(n_features):
+				p_dep_array_tmp = None
+				for iest in range(len(estimator)):
+					if iest == 0:
+						p_dep_array_tmp = skl.inspection.partial_dependence(estimator[iest], features=[ifeat], X=df_param.loc[:,:])['average']
+					else:
+						p_dep_array_tmp = np.vstack((p_dep_array_tmp,skl.inspection.partial_dependence(estimator[iest], features=[ifeat], X=df_param.loc[:,:])['average']))
+
+				p_dep_values.append(skl.inspection.partial_dependence(estimator[iest], features=[ifeat], X=df_param.loc[:,:])['values'][0])
+				p_dep_list_min.append(np.min(p_dep_array_tmp, axis=0).flatten())
+				p_dep_list_max.append(np.max(p_dep_array_tmp, axis=0).flatten())
+				p_dep_list_mean.append(np.mean(p_dep_array_tmp, axis=0).flatten())
+				p_dep_list_median.append(np.median(p_dep_array_tmp, axis=0).flatten())
+
+			#scale all the graph to the same ylimit
+			if scale:
+				min_value = min(p_dep_list_min[0])
+				for i in range(len(p_dep_list_min)):
+					if min_value > min(p_dep_list_min[i]):
+						min_value = min(p_dep_list_min[i])
+				max_value = max(p_dep_list_max[0])
+				for i in range(len(p_dep_list_max)):
+					if max_value < max(p_dep_list_max[i]):
+						max_value = max(p_dep_list_max[i])
+
+			plt.ioff()
+			fig = plt.figure(figsize=(12, 12),layout='tight')
+
+			gs = gridspec.GridSpec(n_features//2+n_features%2, 2)
+			axs=[]
+			for i in range(n_features):
+				ax = fig.add_subplot(gs[i])  # First row, first column
+				axs.append(ax)
+		    # make the list of ax where we will write the target name on the left side. num%2!=0 for right side    
+			num_list = list(range(n_features))
+			list2 = []
+			for num in num_list:
+				if num%2==0:
+					list2.append(num)
+		    
+			for ifeat in range(n_features):
+				axs[ifeat].plot(p_dep_values[ifeat], p_dep_list_mean[ifeat], linestyle='-', linewidth=1, color = 'k', label='Mean')
+				axs[ifeat].fill_between(p_dep_values[ifeat], p_dep_list_min[ifeat], p_dep_list_max[ifeat], linestyle = 'None', linewidth = 0, color = 'k', alpha = 0.25, label='Min-Max')
+				axs[ifeat].plot(p_dep_values[ifeat], p_dep_list_median[ifeat], linestyle='--', linewidth=1, color = 'k', alpha = 0.75, label='Median')
+				axs[ifeat].set_xlabel(proc_param_list[ifeat], fontdict={'weight' : 'medium', 'size'   : 11, 'style'  : 'normal'})
+				if ifeat in list2:
+					axs[ifeat].set_ylabel(target_name, fontdict={'weight' : 'medium', 'size'   : 11, 'style'  : 'normal'})
+				axs[ifeat].tick_params(axis='both', which='major', labelsize=10)
+				axs[0].legend(loc='upper left', frameon=False)
+			
+				if scale:
+					axs[ifeat].set_ylim(min_value - min_value*0.01 ,max_value+max_value*0.01)
+			return fig
+
 		methods = ['ElasticNet', 'RandomForestRegressor', 'XGBRegressor']
 		crossval_list = ['LeaveOneOut','K-Fold']
 		
@@ -413,7 +485,7 @@ elif choice == 'Prediction':
 			target = st.selectbox('Select which target you want to predict',st.session_state['target_selected'])
 			method = st.selectbox('Select which method of prediction you want to use',methods)
 			crossval = st.selectbox('Select which method of cross validation you want to use',crossval_list)
-			k_num = st.number_input('Choose how many subsets do you want to use, it has an impact only if you selected K-fold',min_value=2,max_value=len(st.session_state['data_file_selected'].iloc[:,0])-1,value=3)
+			k_num = st.number_input('Choose how many subsets do you want to use, it has an impact only if you selected K-fold',min_value=2,max_value=20,value=3)
 
 			predict = st.form_submit_button('Submit')	
 
@@ -507,7 +579,11 @@ elif choice == 'Prediction':
 				data=st.session_state['img2'],
 				file_name=fn3,
 				mime='image/png')
-	
+
+			# Graphic about partial dependence
+			st.write("Here are the partial dependence for the target in fonction of the features.")
+			fig_partial_dep = partial_dependence(df_param=st.session_state['data_selected'][st.session_state['feature_selected']], estimator=st.session_state['est_S'], target_name = target) 
+			st.pyplot(fig_partial_dep)
 			# Part about the possibility to reselect your feature with the help of the graph about the feature importance
 			
 			with st.form(key='second_selection'):
@@ -531,7 +607,7 @@ elif choice == 'Prediction':
 			"Be careful that it can take a lot of time (severals minute) depending on the number of data that you have.")
 
 
-		def analyse_function_pred(method, data, target, crossval, lim_feature, k_num=3,random_state = 0, n_estimators = 100):
+		def analyse_function_pred(method, data, target, crossval, lim_feature, k_num,random_state = 0, n_estimators = 100):
 	    
 		    if method == 'ElasticNet':
 		        regressor = ElasticNet(random_state = 0)
@@ -1003,7 +1079,7 @@ elif choice == 'Bayesian':
 
 			crossval = st.selectbox('Select which method of cross validation you want to use',['LeaveOneOut','K-Fold'])
 			
-			k_num = st.number_input('Choose how many subsets do you want to use, it has an impact only if you selected K-fold',min_value=2,max_value=len(st.session_state['data_file_selected'].iloc[:,0])-1,value=3)
+			k_num = st.number_input('Choose how many subsets do you want to use, it has an impact only if you selected K-fold',min_value=2,max_value=20,value=3)
 
 			predict = st.form_submit_button('Submit your selection')	
 
