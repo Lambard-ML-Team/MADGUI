@@ -114,7 +114,7 @@ An strength of this GUI is the possibilities to define features's limitation and
 </p>
 
 <p style="text-align:justify;">
-After all those limits and constraints you are ready to launch the optimisation. This GUI allow you to optimise one or several targets (up to 3), you can select for each one either to maximise or minimise it and also if you select multiple target you can determine the ratio between them (50-50 by default when two tagets are selected).
+After all those limits and constraints you are ready to launch the optimisation. This GUI allow you to optimise one or several targets (up to 3), you can select for each one either to maximise or minimise it and also if you select multiple target you can determine the ratio between them (50-50 by default when two tagets are selected). The Acquisition function of this bayesian optimization is Expected Improvement, it is used to balance exploration and exploitation by quantifying the expected improvement of a candidate point over the current best observed value in the optimization process. It helps guide the search for the global optimum in an efficient manner.
 </p>
 
 <p align="center">
