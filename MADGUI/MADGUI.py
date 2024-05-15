@@ -939,7 +939,7 @@ elif choice == 'Bayesian':
 		# Bayesian Optimisation
 
 		st.subheader('Optimisation')
-
+		st.write("The Acquisition function of this bayesian optimization is Expected Improvement, it is used to balance exploration and exploitation by quantifying the expected improvement of a candidate point over the current best observed value in the optimization process. It helps guide the search for the global optimum in an efficient manner.")
 		# Ask the user how many target does he want to optimise
 		if 'num_target' not in st.session_state:
 			num_target = st.number_input('How many target do you want to optimise? (max 3)',min_value=1, max_value=len(st.session_state['target_selected']),step=1)
