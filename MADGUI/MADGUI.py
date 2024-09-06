@@ -726,15 +726,20 @@ elif choice == 'Bayesian':
 		
 		# The dataframe that the user must complete
 
-		
-		# Make a template of the file that the user must complete with an example about the specific values
-		data_lim_example = pd.DataFrame(np.zeros((len(st.session_state['feature_selected']),4)),
-			columns = ('Min','Max','Step','Specific Values'), 
-			index = (st.session_state['feature_selected']))
-		data_lim_example.iloc[0,3]='1,3.4,5.6,13'
-		data_lim_example.iloc[1,3]='100,100'
-
-		st.dataframe(data_lim_example)
+		if len(st.session_state['feature_selected'])>1:
+			# Make a template of the file that the user must complete with an example about the specific values
+			data_lim_example = pd.DataFrame(np.zeros((len(st.session_state['feature_selected']),4)),
+				columns = ('Min','Max','Step','Specific Values'), 
+				index = (st.session_state['feature_selected']))
+			data_lim_example.iloc[0,3]='1,3.4,5.6,13'
+			data_lim_example.iloc[1,3]='100,100'
+	
+			st.dataframe(data_lim_example)
+		else:
+			data_lim_example = pd.DataFrame(np.zeros((len(st.session_state['feature_selected']),4)),
+				columns = ('Min','Max','Step','Specific Values'), 
+				index = (st.session_state['feature_selected']))
+			st.dataframe(data_lim_example)
 		# Allow the user to download the file about the feature's limits that the user must complete
 
 		test = np.array(np.zeros((len(st.session_state['feature_selected']),1)),dtype='U')
