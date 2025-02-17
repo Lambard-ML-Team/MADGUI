@@ -126,7 +126,7 @@ if choice == 'Main Page':
 			st.write('The first line of your data file must contain the names of your columns. Your data should be in the first sheet of your file and there should be no blank cells. All values in your dataset should be numerical.')
 			st.write("Features are the parameters that you can change during your experiment. Targets are the results of those experiment and are your objective.")
 			st.write("""
-The dataset contains a mix of numerical and categorical features. Specifically:
+In this example, the dataset contains a mix of numerical and categorical features. Specifically:
 
 - Feature_1 and Feature_4 are numerical values.
 
