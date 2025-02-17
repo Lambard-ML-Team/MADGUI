@@ -125,7 +125,15 @@ if choice == 'Main Page':
 			st.image('./MADGUI/Data/exemple_data.png')
 			st.write('The first line of your data file must contain the names of your columns. Your data should be in the first sheet of your file and there should be no blank cells. All values in your dataset should be numerical.')
 			st.write("Features are the parameters that you can change during your experiment. Targets are the results of those experiment and are your objective.")
-			st.write("For instance, Feature_1 and Feature_4 are numerical values, while Feature_2 and Feature_3 are categorical values (respectively 2 and 3 choices). Feature_2 can be 'with' or 'without' something  where 'with' is represented by the numerical value of 1 and 'without' is represented by the numerical value of 2.")
+			st.write("""
+The dataset contains a mix of numerical and categorical features. Specifically:
+
+- Feature_1 and Feature_4 are numerical values.
+
+- Feature_2 and Feature_3 are categorical:
+  - Feature_2 has two categories: 'with' (encoded as 1) and 'without' (encoded as 2).
+  - Feature_3 has three distinct categories: "low" (encoded as 1), "medium" (encoded as 2) and "high" (encoded as 3).
+""")
 			st.write("Then again, it is important that there are no blank cells in your data and that all values used are in numerical format.")
 			st.write('After uploading you should see something like this :')
 			exemple = pd.read_csv('./MADGUI/Data/Exemple_data.csv',sep = ',')
