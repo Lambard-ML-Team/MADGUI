@@ -29,6 +29,11 @@ Christophe BAJAN* & Guillaume LAMBARD*
 **National Institute for Materials Science, Tsukuba, Japan*
 
 
+### Article available
+
+https://www.sciencedirect.com/science/article/pii/S0169743925000085
+
+
 ## Introduction
 
 <p style="text-align:justify;">
@@ -157,4 +162,16 @@ streamlit run MADGUI_local       -> To launch the app
 </p>
   
  
+### Citation
 
+@article{BAJAN2025105323,
+title = {MADGUI: Multi-Application Design Graphical User Interface for active learning assisted by Bayesian optimization},
+journal = {Chemometrics and Intelligent Laboratory Systems},
+volume = {258},
+pages = {105323},
+year = {2025},
+issn = {0169-7439},
+doi = {https://doi.org/10.1016/j.chemolab.2025.105323},
+url = {https://www.sciencedirect.com/science/article/pii/S0169743925000085},
+author = {Christophe Bajan and Guillaume Lambard},
+}
